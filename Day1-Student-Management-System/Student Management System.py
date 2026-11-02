@@ -25,6 +25,10 @@ def main():
             view_student()
         elif choice == "3":
             search_student()
+        elif choice == "4":
+            update_student_marks()
+        elif choice == "5":
+            delete_student()
         else:
             print("Features coming soon.")
 
@@ -64,4 +68,27 @@ def search_student():
     else:
         print("Student not found.")
 
+def update_student_marks():
+    print("|====Update Student Marks====|")
+    student_ID = input("Enter student ID: ").strip()
+    Student = find_student(student_ID)
+    if Student:
+        new_marks = float(input("Enter new marks: "))
+        Student['marks'] = new_marks
+        print("Marks updated successfully!")
+    else:
+        print("Student not found.")
+
+def delete_student():
+    print("\n--- Delete Student ---")
+    student_id = input("Enter student ID: ").strip()
+    student = find_student(student_id)
+
+    if student is None:
+        print("Student not found.")
+        return
+
+    Students.remove(student)
+    print("Student deleted successfully!")
+    
 main()
