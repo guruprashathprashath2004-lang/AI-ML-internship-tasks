@@ -29,6 +29,8 @@ def main():
             update_student_marks()
         elif choice == "5":
             delete_student()
+        elif choice == "6":
+            grade_report()
         else:
             print("Features coming soon.")
 
@@ -100,7 +102,7 @@ def get_valid_id():
     while True:
         student_ID = input("Enter student ID: ").strip()
         if student_ID == "":
-            print("Student ID cannot br empty")
+            print("Student ID cannot be empty")
         elif find_student(student_ID) is not None:
             print("ID already exists. Try another one")
         else:
@@ -115,5 +117,30 @@ def get_valid_marks(prompt="Enter marks (0-100): "):
             print("Marks must be between 0 and 100.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
+def calculate_grade(marks):
+    if marks >= 75:
+        return "A"
+    elif marks >= 60:
+        return "B"
+    elif marks >= 50:
+        return "C"
+    elif marks >= 40:
+        return "D"
+    else:
+        return "Fail"
+
+
+def grade_report():
+    print("\n--- Grade Report ---")
+    if len(Students) == 0:
+        print("No students found.")
+        return
+
+    print(f"{'ID':<10}{'Name':<20}{'Marks':<8}{'Grade':<6}")
+    print("-" * 44)
+    for s in Students:
+        grade = calculate_grade(s["marks"])   # local variable
+        print(f"{s['id']:<10}{s['name']:<20}{s['marks']:<8}{grade:<6}")
     
 main()
