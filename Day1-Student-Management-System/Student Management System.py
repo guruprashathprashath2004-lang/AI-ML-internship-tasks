@@ -1,9 +1,9 @@
-Students = []
+students = []
 
 def choice_menu():
     print("|====Student Management System====|")
     print("1. Add Student")
-    print("2. View All Student")
+    print("2. View All Students")
     print("3. Search Student By ID")
     print("4. Update Student Marks")
     print("5. Delete Student")
@@ -36,7 +36,7 @@ def main():
 
 def add_student():
     print("|===Add Student===|")
-    student_ID = get_valid_id()
+    student_id = get_valid_id()
 
     name = ""
     while name == "":
@@ -46,67 +46,67 @@ def add_student():
 
     marks = get_valid_marks()
 
-    Students.append({"id": student_ID, "name": name, "marks": marks})
+    students.append({"id": student_id, "name": name, "marks": marks})
     print("Student added successfully!")
 
 def view_student():
     print("|====View Students====|")
-    if len(Students) == 0:
-        print("No Students Found.")
+    if len(students) == 0:
+        print("No students found.")
         return
 
-    print(f"{'id':<10}{'name':<20}{'marks':<8}")
+    print(f"{'ID':<10}{'Name':<20}{'Marks':<8}")
     print("-" * 38)
-    for Student in Students:
-        print(f"{Student['id']:<10}{Student['name']:<20}{Student['marks']:<8}")
+    for student in students:
+        print(f"{student['id']:<10}{student['name']:<20}{student['marks']:<8}")
 
-def find_student(student_ID):
-    for Student in Students:
-        if Student['id']  == student_ID:
-            return Student
+def find_student(student_id):
+    for student in students:
+        if student['id']  == student_id:
+            return student
     return None
 
 def search_student():
     print("|====Search Student====|")
-    student_ID = input("Enter student ID: ").strip()
-    Student = find_student(student_ID)
-    if Student:
-        print(f"Student Found: {Student['name']} with marks {Student['marks']}")
+    student_id = input("Enter student ID: ").strip()
+    student = find_student(student_id)
+    if student:
+        print(f"Student found: {student['name']} with marks {student['marks']}")
     else:
         print("Student not found.")
 
 def update_student_marks():
     print("|====Update Student Marks====|")
-    student_ID = input("Enter student ID: ").strip()
-    Student = find_student(student_ID)
-    if Student:
+    student_id = input("Enter student ID: ").strip()
+    student = find_student(student_id)
+    if student:
         new_marks = get_valid_marks("Enter new marks (0-100): ")
-        Student['marks'] = new_marks
+        student['marks'] = new_marks
         print("Marks updated successfully!")
     else:
         print("Student not found.")
 
 def delete_student():
-    print("\n--- Delete Student ---")
-    student_ID = input("Enter student ID: ").strip()
-    student = find_student(student_ID)
+    print("|====Delete Student====|")
+    student_id = input("Enter student ID: ").strip()
+    student = find_student(student_id)
 
     if student is None:
         print("Student not found.")
         return
 
-    Students.remove(student)
+    students.remove(student)
     print("Student deleted successfully!")
 
 def get_valid_id():
     while True:
-        student_ID = input("Enter student ID: ").strip()
-        if student_ID == "":
-            print("Student ID cannot be empty")
-        elif find_student(student_ID) is not None:
+        student_id = input("Enter student ID: ").strip()
+        if student_id == "":
+            print("Student ID cannot be empty.")
+        elif find_student(student_id) is not None:
             print("ID already exists. Try another one")
         else:
-            return student_ID
+            return student_id
 
 def get_valid_marks(prompt="Enter marks (0-100): "):
     while True:
@@ -132,28 +132,28 @@ def calculate_grade(marks):
 
 
 def grade_report():
-    print("\n--- Grade Report ---")
-    if len(Students) == 0:
+    print("|====Grade Report====|")
+    if len(students) == 0:
         print("No students found.")
         return
 
     print(f"{'ID':<10}{'Name':<20}{'Marks':<8}{'Grade':<6}")
     print("-" * 44)
-    for s in Students:
+    for s in students:
         grade = calculate_grade(s["marks"])   # local variable
         print(f"{s['id']:<10}{s['name']:<20}{s['marks']:<8}{grade:<6}")
     show_statistics()    
 
 def show_statistics():
     total = 0
-    top_student = Students[0]
+    top_student = students[0]
 
-    for s in Students:
+    for s in students:
         total += s["marks"]
         if s["marks"] > top_student["marks"]:
             top_student = s
 
-    average = total / len(Students)
+    average = total / len(students)
     print(f"\nAverage Marks : {average:.2f}")
     print(f"Top Performer : {top_student['name']} ({top_student['marks']})")
 
