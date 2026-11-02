@@ -23,6 +23,8 @@ def main():
             add_student()
         elif choice == "2":
             view_student()
+        elif choice == "3":
+            search_student()
         else:
             print("Features coming soon.")
 
@@ -46,5 +48,20 @@ def view_student():
     print("-" * 38)
     for Student in Students:
         print(f"{Student['id']:<10}{Student['name']:<20}{Student['marks']:<8}")
+
+def find_student(student_ID):
+    for Student in Students:
+        if Student['id']  == student_ID:
+            return Student
+    return None
+
+def search_student():
+    print("|====Search Student====|")
+    student_ID = input("Enter student ID: ").strip()
+    Student = find_student(student_ID)
+    if Student:
+        print(f"Student Found: {Student['name']} with marks {Student['marks']}")
+    else:
+        print("Student not found.")
 
 main()
