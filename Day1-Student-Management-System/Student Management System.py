@@ -19,7 +19,32 @@ def main():
         if choice == "7":
             print("Thank you! Bye.")
             break
+        elif choice == "1":
+            add_student()
+        elif choice == "2":
+            view_student()
         else:
             print("Features coming soon.")
+
+def add_student():
+    print("|===Add Student===|")
+    student_ID = input("Enter student ID: ").strip()
+    name = input("Enter your name: ").strip()
+    marks = float(input("Enter your marks: "))
+
+    Student = {"id": student_ID, "name": name, "marks": marks }
+    Students.append(Student)
+    print("Student added successfully!")
+
+def view_student():
+    print("|====View Students====|")
+    if len(Students) == 0:
+        print("No Students Found.")
+        return
+
+    print(f"{'id':<10}{'name':<20}{'marks':<8}")
+    print("-" * 38)
+    for Student in Students:
+        print(f"{Student['id']:<10}{Student['name']:<20}{Student['marks']:<8}")
 
 main()
