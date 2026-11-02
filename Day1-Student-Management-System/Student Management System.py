@@ -14,7 +14,7 @@ def choice_menu():
 def main():
     while True:
         choice_menu()
-        choice = input("Enter Your Choice: (1-7)").strip()
+        choice = input("Enter Your Choice (1-7): ").strip()
 
         if choice == "7":
             print("Thank you! Bye.")
@@ -32,7 +32,7 @@ def main():
         elif choice == "6":
             grade_report()
         else:
-            print("Features coming soon.")
+            print("Invalid choice. Please enter 1-7.")
 
 def add_student():
     print("|===Add Student===|")
