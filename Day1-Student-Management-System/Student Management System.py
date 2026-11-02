@@ -34,12 +34,17 @@ def main():
 
 def add_student():
     print("|===Add Student===|")
-    student_ID = input("Enter student ID: ").strip()
-    name = input("Enter your name: ").strip()
-    marks = float(input("Enter your marks: "))
+    student_ID = get_valid_id()
 
-    Student = {"id": student_ID, "name": name, "marks": marks }
-    Students.append(Student)
+    name = ""
+    while name == "":
+        name = input("Enter student name: ").strip()
+        if name == "":
+            print("Name cannot be empty.")
+
+    marks = get_valid_marks()
+
+    Students.append({"id": student_ID, "name": name, "marks": marks})
     print("Student added successfully!")
 
 def view_student():
@@ -73,7 +78,7 @@ def update_student_marks():
     student_ID = input("Enter student ID: ").strip()
     Student = find_student(student_ID)
     if Student:
-        new_marks = float(input("Enter new marks: "))
+        new_marks = get_valid_marks("Enter new marks (0-100): ")
         Student['marks'] = new_marks
         print("Marks updated successfully!")
     else:
@@ -81,8 +86,8 @@ def update_student_marks():
 
 def delete_student():
     print("\n--- Delete Student ---")
-    student_id = input("Enter student ID: ").strip()
-    student = find_student(student_id)
+    student_ID = input("Enter student ID: ").strip()
+    student = find_student(student_ID)
 
     if student is None:
         print("Student not found.")
@@ -90,5 +95,25 @@ def delete_student():
 
     Students.remove(student)
     print("Student deleted successfully!")
+
+def get_valid_id():
+    while True:
+        student_ID = input("Enter student ID: ").strip()
+        if student_ID == "":
+            print("Student ID cannot br empty")
+        elif find_student(student_ID) is not None:
+            print("ID already exists. Try another one")
+        else:
+            return student_ID
+
+def get_valid_marks(prompt="Enter marks (0-100): "):
+    while True:
+        try:
+            marks = float(input(prompt))
+            if 0 <= marks <= 100:
+                return marks
+            print("Marks must be between 0 and 100.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
     
 main()
