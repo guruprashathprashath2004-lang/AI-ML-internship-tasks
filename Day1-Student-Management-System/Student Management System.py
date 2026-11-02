@@ -142,5 +142,21 @@ def grade_report():
     for s in Students:
         grade = calculate_grade(s["marks"])   # local variable
         print(f"{s['id']:<10}{s['name']:<20}{s['marks']:<8}{grade:<6}")
-    
+    show_statistics()    
+
+def show_statistics():
+    total = 0
+    top_student = Students[0]
+
+    for s in Students:
+        total += s["marks"]
+        if s["marks"] > top_student["marks"]:
+            top_student = s
+
+    average = total / len(Students)
+    print(f"\nAverage Marks : {average:.2f}")
+    print(f"Top Performer : {top_student['name']} ({top_student['marks']})")
+
+
+
 main()
