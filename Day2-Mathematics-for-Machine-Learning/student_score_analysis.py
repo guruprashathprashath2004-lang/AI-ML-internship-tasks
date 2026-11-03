@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 pass_marks = 40
 high_score = 75
 student_count = 10
@@ -72,9 +74,47 @@ def display_statistics(marks):
     print(f"Probability(Score > 80) : {above_80_probability:.2f}")
     print(f"Probability(Failed)     : {fail_probability:.2f}")
 
+def generate_graphs(marks):
+    student_numbers = list(range(1, len(marks) + 1))
+    labels = [f"S{n}" for n in student_numbers]
+
+    plt.figure(figsize=(12, 8))
+
+    # 1. Bar Chart
+    plt.subplot(2, 2, 1)
+    plt.bar(labels, marks, color="steelblue")
+    plt.title("Student vs Marks")
+    plt.xlabel("Student")
+    plt.ylabel("Marks")
+
+    # 2. Line Chart
+    plt.subplot(2, 2, 2)
+    plt.plot(student_numbers, marks, marker="o", color="green")
+    plt.title("Marks Trend")
+    plt.xlabel("Student Number")
+    plt.ylabel("Marks")
+
+    # 3. Histogram
+    plt.subplot(2, 2, 3)
+    plt.hist(marks, bins=5, color="orange", edgecolor="black")
+    plt.title("Score Distribution")
+    plt.xlabel("Marks")
+    plt.ylabel("Number of Students")
+
+    # 4. Scatter Plot
+    plt.subplot(2, 2, 4)
+    plt.scatter(student_numbers, marks, color="red")
+    plt.title("Student Number vs Marks")
+    plt.xlabel("Student Number")
+    plt.ylabel("Marks")
+
+    plt.tight_layout()
+    plt.show()
+
 def main():
-    print("===== STUDENT EXAM SCORE ANALYSIS =====")
+    print("|===== STUDENT EXAM SCORE ANALYSIS =====|")
     marks = collect_marks()
     display_statistics(marks)
+    generate_graphs(marks)
 
 main()
