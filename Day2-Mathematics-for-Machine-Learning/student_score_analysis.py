@@ -53,23 +53,28 @@ def calculate_probability(marks, event):
 
     return count / len(marks)
 
+def display_statistics(marks):
+    pass_probability = calculate_probability(marks, "pass")
+    fail_probability = calculate_probability(marks, "fail")
+    above_80_probability = calculate_probability(marks, "above_80")
+
+    print("\n|==== STATISTICAL ANALYSIS ====|")
+    print(f"Mean            : {caluculate_mean(marks):.2f}")
+    print(f"Median          : {calculate_median(marks):.2f}")
+    print(f"Maximum Score   : {max(marks)}")
+    print(f"Minimum Score   : {min(marks)}")
+    print(f"Variance        : {calculate_variance(marks):.2f}")
+    print(f"Pass Percentage : {pass_probability * 100:.1f}%")
+    print(f"Fail Percentage : {fail_probability * 100:.1f}%")
+
+    print("\n|==== PROBABILITY ANALYSIS ====|")
+    print(f"Probability(Passed)     : {pass_probability:.2f}")
+    print(f"Probability(Score > 80) : {above_80_probability:.2f}")
+    print(f"Probability(Failed)     : {fail_probability:.2f}")
 
 def main():
+    print("===== STUDENT EXAM SCORE ANALYSIS =====")
     marks = collect_marks()
-    print("Collected marks:", marks)
-
-    mean = caluculate_mean(marks)
-    print("Mean Value: ", mean)
-
-    median = calculate_median(marks)
-    print("Median Value: ", median)
-
-    variance = calculate_variance(marks)
-    print("variance: ", variance)
-
-    print(calculate_probability(marks, "pass"))
-    print(calculate_probability(marks, "fail"))
-    print(calculate_probability(marks, "above_80"))
-
+    display_statistics(marks)
 
 main()
