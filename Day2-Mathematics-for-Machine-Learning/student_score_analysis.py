@@ -16,8 +16,29 @@ def collect_marks():
 
     return marks
 
+def caluculate_mean(marks):
+    return sum(marks)/len(marks)
+
+def calculate_median(marks):
+    sorted_marks = sorted(marks)
+    n = len(marks)
+    middle = n // 2
+
+    if n % 2 == 1:
+        return sorted_marks[middle]
+    else:
+        return (sorted_marks[middle - 1] + sorted_marks[middle]) / 2
+    
+
+
 def main():
     marks = collect_marks()
     print("Collected marks:", marks)
+
+    mean = caluculate_mean(marks)
+    print("Mean Value: ", mean)
+
+    median = calculate_median(marks)
+    print("Median Value: ", median)
 
 main()
