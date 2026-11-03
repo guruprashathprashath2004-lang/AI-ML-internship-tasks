@@ -28,7 +28,13 @@ def calculate_median(marks):
         return sorted_marks[middle]
     else:
         return (sorted_marks[middle - 1] + sorted_marks[middle]) / 2
-    
+
+def calculate_variance(marks):
+    total = 0
+    for mark in marks:
+        total += (mark - caluculate_mean(marks)) ** 2
+
+    return total / len(marks)   
 
 
 def main():
@@ -40,5 +46,8 @@ def main():
 
     median = calculate_median(marks)
     print("Median Value: ", median)
+
+    variance = calculate_variance(marks)
+    print("variance: ", variance)
 
 main()
