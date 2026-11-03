@@ -1,7 +1,11 @@
+pass_marks = 40
+high_score = 75
+student_count = 10
+
 def collect_marks():
     marks = []
 
-    print("Enter 10 student's Marks")
+    print(f"Enter {student_count} student's Marks")
 
     for i in range(1, 11): 
         while True:
@@ -36,6 +40,19 @@ def calculate_variance(marks):
 
     return total / len(marks)   
 
+def calculate_probability(marks, event):
+    count = 0
+
+    for mark in marks:
+        if event == "pass" and mark >= pass_marks:
+            count += 1
+        elif event == "fail" and mark <= pass_marks:
+            count += 1
+        elif event == "above_80" and mark > high_score:
+            count += 1
+
+    return count / len(marks)
+
 
 def main():
     marks = collect_marks()
@@ -49,5 +66,10 @@ def main():
 
     variance = calculate_variance(marks)
     print("variance: ", variance)
+
+    print(calculate_probability(marks, "pass"))
+    print(calculate_probability(marks, "fail"))
+    print(calculate_probability(marks, "above_80"))
+
 
 main()
