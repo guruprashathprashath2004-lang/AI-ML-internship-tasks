@@ -13,6 +13,13 @@ def create_dataset():
 
     return np.column_stack((id, ages, math_marks, sci_marks, eng_marks, ai_marks))
 
+def display_properties(array):
+    print("|==== DATASET PROPERTIES ====|")
+    print(f"Shape     : {array.shape}")
+    print(f"Dimentions: {array.ndim}")
+    print(f"Size      : {array.size}")
+    print(f"Dtat Type : {array.dtype}")
+
 def main():
     table = create_dataset()
     print("".join(f"{col:<15}" for col in column))
@@ -21,6 +28,8 @@ def main():
     for row in table:
         print("".join(f"{value:<15}" for value in row))
 
+    prop = display_properties(table)
+    print(prop)
 
 
 main()
