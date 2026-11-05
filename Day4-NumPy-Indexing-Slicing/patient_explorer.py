@@ -1,7 +1,7 @@
 import numpy as np
 
 patient_count = 20
-header = ["PATIENT ID", "AGE", "BLOOD PERSSURE", "SUGAR LEVEL", "HEART RATE", "BMI"]
+header = ["PATIENT ID", "AGE", "BLOOD PRESSURE", "SUGAR LEVEL", "HEART RATE", "BMI"]
 
 high_bp = 140
 high_sugar = 140
@@ -20,6 +20,8 @@ def main():
 
 
 def create_patient_dataset():
+    np.random.seed(42)
+
     patient_id = np.arange(1, patient_count + 1)                  # Get same datas for every run
 
     age = np.random.randint(20, 81, patient_count)
@@ -38,7 +40,7 @@ def create_patient_dataset():
 
 def display_datas(patients_datas):
 
-    print("|==== PATIENTS DATASET ===|".center(90))
+    print("|==== PATIENTS DATASET ====|".center(90))
 
     if len(patients_datas) == 0:
         print("No records found..!")
