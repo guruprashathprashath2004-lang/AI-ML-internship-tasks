@@ -25,3 +25,12 @@ Student dataset management using NumPy arrays.
 
 **Features:** 20-student dataset (ID, age, 4 subject marks), shape/ndim/size/dtype,
 Python list vs NumPy comparison, subject averages, 3D array for two classrooms
+
+## Day 4: NumPy Indexing & Slicing
+Hospital Patient Record Explorer using NumPy indexing, slicing and boolean filtering.
+
+**Run:** `python Day4-NumPy-Indexing-Slicing/patient_explorer.py`
+**Requires:** `pip install numpy`
+
+**Features:** First/last patient, BP column, Age and BMI columns, patients 5-15,
+high BP patients, senior citizens (Age > 60), bonus: high BP and high sugar
