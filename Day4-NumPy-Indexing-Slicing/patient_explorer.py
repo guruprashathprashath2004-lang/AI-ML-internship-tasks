@@ -12,6 +12,8 @@ def main():
     display_datas(patients_datas)
     first_and_last_patients(patients_datas)
     display_blood_pressure_values(patients_datas)
+    display_only_age_and_bmi(patients_datas)
+    retrieve_1_to_15_patients(patients_datas)
 
 
 def create_patient_dataset():
@@ -72,5 +74,30 @@ def display_blood_pressure_values(patients_datset):
     for data in patients_datset[:, [2]]:
         print("" .join(f"{value:<20}" for value in data))
 
+
+def display_only_age_and_bmi(patients_datas):
+
+    print()
+    print("|==== ALL PATIENT'S AGE AND BMI ====|".center(40))
+
+    print("-" * 40)
+    print("" .join(f"{head:<20}" for head in [header[1], header[5]]))
+    print("-" * 40)
+
+    for data in patients_datas[:, [1, 5]]:
+        print("" .join(f"{value:<20}" for value in data))
+
+
+def retrieve_1_to_15_patients(patients_datas):
+
+    print()
+    print("|==== RETRIEVED PATIENTS (5 - 15) ====|".center(90))
+
+    print("-" * 90)
+    print("" .join(f"{head:<15}" for head in header))
+    print("-" * 90)
+
+    for data in patients_datas[4: 15]:
+        print("" .join(f"{value:<15}" for value in data))
 
 main()
