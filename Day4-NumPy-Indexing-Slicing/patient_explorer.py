@@ -14,6 +14,8 @@ def main():
     display_blood_pressure_values(patients_datas)
     display_only_age_and_bmi(patients_datas)
     retrieve_1_to_15_patients(patients_datas)
+    high_blood_pressure_patients(patients_datas)
+    senior_citizens(patients_datas)
 
 
 def create_patient_dataset():
@@ -99,5 +101,35 @@ def retrieve_1_to_15_patients(patients_datas):
 
     for data in patients_datas[4: 15]:
         print("" .join(f"{value:<15}" for value in data))
+
+
+def high_blood_pressure_patients(patients_datas):
+
+    print()
+    print("|==== HIGH BLOOD PRESSURE PATIENTS ====|".center(90))
+
+    print("-" * 90)
+    print("" .join(f"{head:<15}" for head in header))
+    print("-" * 90)
+
+    high_bp_patients = patients_datas[patients_datas[:, 2] > high_bp]
+    for data in high_bp_patients:
+        print("" .join(f"{value:<15}" for value in data))
+
+
+def senior_citizens(patients_datas):
+
+    print()
+    print("|==== SENIOR CITIZENS ====|".center(90))
+    
+    print("-" * 90)
+    print("" .join(f"{head:<15}" for head in header))
+    print("-" * 90)
+
+    senior_citizen = patients_datas[patients_datas[:, 1] > senior_age]
+    for data in senior_citizen:
+        print("" .join(f"{value:<15}" for value in data))
+
+
 
 main()
