@@ -16,6 +16,7 @@ def main():
     retrieve_1_to_15_patients(patients_datas)
     high_blood_pressure_patients(patients_datas)
     senior_citizens(patients_datas)
+    high_bp_and_high_sugar_level(patients_datas)
 
 
 def create_patient_dataset():
@@ -130,6 +131,23 @@ def senior_citizens(patients_datas):
     for data in senior_citizen:
         print("" .join(f"{value:<15}" for value in data))
 
+
+def high_bp_and_high_sugar_level(patients_datas):
+
+    print()
+    print("|==== PATIENTS WITH BOTH HIGH BP AND HIGH SUGAR LEVELS ====|".center(90))
+        
+    print("-" * 90)
+    print("" .join(f"{head:<15}" for head in header))
+    print("-" * 90)
+   
+    both = patients_datas[
+        (patients_datas[:, 2] > high_bp) & 
+        (patients_datas[:, 3] > high_sugar)
+        ]
+
+    for data in both:
+        print("" .join(f"{value:<15}" for value in data))
 
 
 main()
