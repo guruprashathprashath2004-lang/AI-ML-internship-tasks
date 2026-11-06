@@ -17,6 +17,7 @@ def create_dataset():
 
     return np.column_stack((ids, monthly_sales, revenue, profit))
 
+
 def display_dataset(sales_dataset):
 
     print("|==== MONTHLY SALES DATA ====|\n".center(60))
@@ -28,10 +29,26 @@ def display_dataset(sales_dataset):
     for row in sales_dataset:
         print("" .join(f"{value:<15}" for value in row))
 
+
+def total_revenue(sales_dataset):
+
+    total_rev = np.sum(sales_dataset[:,2])
+    float_rev = total_rev.astype(float)
+    print("\nTOTAL REVENUE   : ", float_rev)
+
+
+def average_revenue(sales_dataset):
+
+    avg_revenue =  np.mean(sales_dataset[:,2])
+    print("AVERAGE REVENUE : ", avg_revenue)
+
+
 def main():
 
     sales_dataset = create_dataset()
     display_dataset(sales_dataset)
+    total_revenue(sales_dataset)
+    average_revenue(sales_dataset)
 
 main()
 
