@@ -62,6 +62,15 @@ def profit(sales_dataset):
     print(f"PROFIT PERCENTAGE : {profit_percentage:.2f} %")
 
 
+def best_and_worst_selling(sales_dataset):
+
+    best = sales_dataset[np.argmax(sales_dataset[:, 1])]
+    worst = sales_dataset[np.argmin(sales_dataset[:, 1])]
+
+    print(f"BEST SELLING PRODUCT  : Product ID {best[0]} -> {best[1]} units")
+    print(f"WORST SELLING PRODUCT : Product ID {worst[0]} -> {worst[1]} units")
+
+
 def main():
 
     sales_dataset = create_dataset()
@@ -70,6 +79,7 @@ def main():
     average_revenue(sales_dataset)
     highest_and_lowest(sales_dataset)
     profit(sales_dataset)
+    best_and_worst_selling(sales_dataset)
 
 main()
 
