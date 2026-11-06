@@ -43,12 +43,21 @@ def average_revenue(sales_dataset):
     print("AVERAGE REVENUE : ", avg_revenue)
 
 
+def highest_and_lowest(sales_dataset):
+
+    highest_sales = np.max(sales_dataset[:,2])
+    lowest_sales = np.min(sales_dataset[:,2])
+    print("HIGEST SALES    : ", highest_sales)
+    print("LOWEST SALES    : ", lowest_sales)
+
+
 def main():
 
     sales_dataset = create_dataset()
     display_dataset(sales_dataset)
     total_revenue(sales_dataset)
     average_revenue(sales_dataset)
+    highest_and_lowest(sales_dataset)
 
 main()
 
