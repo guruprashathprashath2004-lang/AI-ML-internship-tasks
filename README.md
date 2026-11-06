@@ -34,3 +34,12 @@ Hospital Patient Record Explorer using NumPy indexing, slicing and boolean filte
 
 **Features:** First/last patient, BP column, Age and BMI columns, patients 5-15,
 high BP patients, senior citizens (Age > 60), bonus: high BP and high sugar
+
+## Day 5: NumPy Operations & Statistics
+Sales Analytics Dashboard (console) using NumPy arithmetic and statistics.
+
+**Run:** `python Day5-NumPy-Operations-Statistics/sales_dashboard.py`
+**Requires:** `pip install numpy`
+
+**Features:** Total and average revenue, highest and lowest sales, profit percentage,
+best and worst selling product, bonus: top 5 products by revenue
