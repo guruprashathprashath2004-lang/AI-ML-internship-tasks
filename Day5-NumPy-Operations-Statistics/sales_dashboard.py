@@ -36,8 +36,7 @@ def total_revenue(sales_dataset):
     print("|==== CALCULATIONS ====|\n".center(60))
 
     total_rev = np.sum(sales_dataset[:,2])
-    float_rev = total_rev.astype(float)
-    print("1. TOTAL REVENUE   : ", float_rev)
+    print("1. TOTAL REVENUE   : ", total_rev)
 
 
 def average_revenue(sales_dataset):
@@ -48,15 +47,15 @@ def average_revenue(sales_dataset):
 
 def highest_and_lowest(sales_dataset):
 
-    highest_sales = np.max(sales_dataset[:,2].astype(float))
-    lowest_sales = np.min(sales_dataset[:,2].astype(float))
-    print("3. HIGEST SALES  : ", highest_sales)
-    print("4. LOWEST SALES  : ", lowest_sales)
+    highest_sales = np.max(sales_dataset[:, 1])
+    lowest_sales = np.min(sales_dataset[:, 1])
+    print(f"3. HIGHEST SALES : {highest_sales} units")
+    print(f"4. LOWEST SALES  : {lowest_sales} units")
 
 
 def profit(sales_dataset):
 
-    total_profit = np.sum(sales_dataset[:, 3].astype(float))
+    total_profit = np.sum(sales_dataset[:, 3])
     total_revenue = np.sum(sales_dataset[:, 2].astype(float))
 
     profit_percentage = (total_profit / total_revenue) * 100
