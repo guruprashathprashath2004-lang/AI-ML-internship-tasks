@@ -99,13 +99,13 @@ def above_average(salary_dataset, title):
 
     print(f"Average Salary : {mean:.2f}")
 
-    print("-" * 90)
-    print("".join(f"{head:<15}" for head in HEADER))
-    print("-" * 90)
-
     above_avrg = salary_dataset[salaries > mean]
 
     print(f"Employees Found : {len(above_avrg)}")
+
+    print("-" * 90)
+    print("".join(f"{head:<15}" for head in HEADER))
+    print("-" * 90)
 
     for data in above_avrg:
         print("".join(
@@ -116,6 +116,37 @@ def above_average(salary_dataset, title):
         ))
 
 
+def reshape_dataset(salary_dataset, title):
+
+    print()
+    reshaped = salary_dataset.reshape(2, 10, 6)
+
+    print(f"|==== {title} ====|\n".center(90))
+    print(f"Original Shape : {salary_dataset.shape}")
+    print(f"Reshaped Shape : {reshaped.shape}  (2 groups x 10 employees x 6 columns)")
+
+    print()
+    display_dataset(reshaped[0][:3], "GROUP 1 (FIRST 3 EMPLOYEES)")
+    return reshaped
+
+
+def transpose_dataset(salary_dataset, title):
+
+    print()
+    transposed = salary_dataset.T
+
+    print(f"|==== {title} ====|\n".center(90))
+    print(f"Original Shape   : {salary_dataset.shape}")
+    print(f"Transposed Shape : {transposed.shape}\n")
+
+    for head, column in zip(HEADER, transposed):
+        if head == "Salary":
+            values = [round(float(v), 2) for v in column[:5]]
+        else:
+            values = [int(v) for v in column[:5]]
+        print(f"{head:<18}: {values} ...")
+    return transposed
+
 def main():
 
     salary_dataset = create_employee_salary_dataset()
@@ -125,5 +156,7 @@ def main():
     performance_filter(salary_dataset, "HIGH Performance EMPLOYEES (>90)")
     increase_salary(salary_dataset)
     above_average(salary_dataset, "ABOVE AVERAGE SALARY DATA")
+    reshape_dataset(salary_dataset, "RESHAPED DATASET")
+    transpose_dataset(salary_dataset, "TRANSPOSED DATASET")
 
 main()
