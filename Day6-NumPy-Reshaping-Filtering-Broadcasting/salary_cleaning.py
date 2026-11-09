@@ -47,6 +47,7 @@ def replace_negative_salaries(salary_dataset):
     print(f"\nNegative Salaries Found : {np.sum(salary_dataset[:, 3] < 0)}")
 
     valid_avrg = np.mean(salary_dataset[salary_dataset[:, 3] > 0][:, 3])
+    valid_avrg = round(valid_avrg, 2)   
     print(f"Replaced With Mean     : {valid_avrg:.2f}")
 
     salary_dataset[salary_dataset[:, 3] < 0, 3] = valid_avrg
@@ -94,7 +95,7 @@ def above_average(salary_dataset, title):
     print(f"|==== {title} ====|\n".center(90))
 
     salaries = salary_dataset[:, 3].astype(float)
-    mean = np.mean(salaries)
+    mean = round(np.mean(salaries), 2) 
 
     print(f"Average Salary : {mean:.2f}")
 
