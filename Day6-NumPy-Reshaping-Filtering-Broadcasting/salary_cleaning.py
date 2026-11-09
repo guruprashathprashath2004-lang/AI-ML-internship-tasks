@@ -87,6 +87,7 @@ def increase_salary(salary_dataset):
 
     print()
     display_dataset(percentage, "SALARY AFTER 10% INCREASE")
+    return percentage
 
 
 def above_average(salary_dataset, title):
@@ -147,6 +148,21 @@ def transpose_dataset(salary_dataset, title):
         print(f"{head:<18}: {values} ...")
     return transposed
 
+def save_cleaned_dataset(salary_dataset, filename="cleaned_employee_data.csv"):
+
+    numeric_data = salary_dataset.astype(float)    
+
+    print("\n|==== CLEANED DATASET CHECK ====|\n")
+    print(f"Negative Salaries Left : {np.sum(numeric_data[:, 3] < 0)}")
+    print(f"Missing Values (NaN)   : {np.sum(np.isnan(numeric_data))}")
+
+    np.savetxt(
+        filename, numeric_data, delimiter=",",
+        header=",".join(HEADER), comments="",
+        fmt=["%d", "%d", "%d", "%.2f", "%d", "%d"],
+    )
+    print(f"\nCleaned dataset saved to {filename}")
+
 def main():
 
     salary_dataset = create_employee_salary_dataset()
@@ -154,9 +170,10 @@ def main():
     replace_negative_salaries(salary_dataset)
     display_dataset(salary_dataset, "CLEANED EMPLOYEE DATA")
     performance_filter(salary_dataset, "HIGH Performance EMPLOYEES (>90)")
-    increase_salary(salary_dataset)
+    final_data = increase_salary(salary_dataset)  
     above_average(salary_dataset, "ABOVE AVERAGE SALARY DATA")
     reshape_dataset(salary_dataset, "RESHAPED DATASET")
     transpose_dataset(salary_dataset, "TRANSPOSED DATASET")
+    save_cleaned_dataset(final_data)
 
 main()
