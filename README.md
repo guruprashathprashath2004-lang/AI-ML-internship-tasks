@@ -43,3 +43,13 @@ Sales Analytics Dashboard (console) using NumPy arithmetic and statistics.
 
 **Features:** Total and average revenue, highest and lowest sales, profit percentage,
 best and worst selling product, bonus: top 5 products by revenue
+
+## Day 6: NumPy Reshaping, Filtering & Broadcasting
+Employee Salary Data Cleaning System using NumPy.
+
+**Run:** `python Day6-NumPy-Reshaping-Filtering-Broadcasting/<your_file>.py`
+**Requires:** `pip install numpy`
+
+**Features:** Replace negative salaries, 10% salary increase (broadcasting),
+performance > 90 filter, above-average salary filter, reshape, transpose,
+bonus: cleaned dataset exported as CSV

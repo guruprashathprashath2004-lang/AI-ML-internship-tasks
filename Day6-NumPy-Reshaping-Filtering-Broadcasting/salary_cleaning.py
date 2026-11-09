@@ -159,7 +159,7 @@ def save_cleaned_dataset(salary_dataset, filename="cleaned_employee_data.csv"):
     np.savetxt(
         filename, numeric_data, delimiter=",",
         header=",".join(HEADER), comments="",
-        fmt=["%d", "%d", "%d", "%.2f", "%d", "%d"],
+        fmt=["{%d}", "%d", "%d", "%.2f", "%d", "%d"],
     )
     print(f"\nCleaned dataset saved to {filename}")
 
