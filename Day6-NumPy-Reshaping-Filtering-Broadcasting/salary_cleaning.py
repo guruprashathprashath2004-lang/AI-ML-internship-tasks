@@ -36,11 +36,9 @@ def display_dataset(salary_dataset,title):
 
     for data in salary_dataset:
         print("".join(f"{float(value):<15.2f}" 
-                      if 
-                      i == 3 
+                      if i == 3 
                       else f"{int(value):<15}" 
-                      for i, 
-                      value in enumerate(data)
+                      for i, value in enumerate(data)
     ))
 
 
@@ -72,11 +70,9 @@ def performance_filter(salary_dataset, title):
     
     for data in perfomace:
         print("".join(f"{float(value):<15.2f}" 
-                      if 
-                      i == 3 
+                      if i == 3 
                       else f"{int(value):<15}" 
-                      for i, 
-                      value in enumerate(data)
+                      for i, value in enumerate(data)
         ))
 
 
@@ -91,6 +87,34 @@ def increase_salary(salary_dataset):
     print()
     display_dataset(percentage, "SALARY AFTER 10% INCREASE")
 
+
+def above_average(salary_dataset, title):
+
+    print()
+    print(f"|==== {title} ====|\n".center(90))
+
+    salaries = salary_dataset[:, 3].astype(float)
+    mean = np.mean(salaries)
+
+    print(f"Average Salary : {mean:.2f}")
+
+    print("-" * 90)
+    print("".join(f"{head:<15}" for head in HEADER))
+    print("-" * 90)
+
+    above_avrg = salary_dataset[salaries > mean]
+
+    print(f"Employees Found : {len(above_avrg)}")
+
+    for data in above_avrg:
+        print("".join(
+            f"{float(value):<15.2f}" 
+            if i == 3
+            else f"{int(value):<15}"
+            for i, value in enumerate(data)
+        ))
+
+
 def main():
 
     salary_dataset = create_employee_salary_dataset()
@@ -99,5 +123,6 @@ def main():
     display_dataset(salary_dataset, "CLEANED EMPLOYEE DATA")
     performance_filter(salary_dataset, "HIGH Performance EMPLOYEES (>90)")
     increase_salary(salary_dataset)
+    above_average(salary_dataset, "ABOVE AVERAGE SALARY DATA")
 
 main()
