@@ -53,3 +53,13 @@ Employee Salary Data Cleaning System using NumPy.
 **Features:** Replace negative salaries, 10% salary increase (broadcasting),
 performance > 90 filter, above-average salary filter, reshape, transpose,
 bonus: cleaned dataset exported as CSV
+
+## Day 7: Complete NumPy Mini Project
+AI Data Preprocessing Pipeline using NumPy (Student Performance dataset, 100 records).
+
+**Run:** `python Day7-NumPy-Mini-Project/<your_file>.py`
+**Requires:** `pip install numpy`
+
+**Pipeline:** create dataset, explore, clean invalid values, handle missing data,
+filter records, statistics, reshape and broadcasting (normalization),
+summary statistics, save processed dataset (CSV and npy)
