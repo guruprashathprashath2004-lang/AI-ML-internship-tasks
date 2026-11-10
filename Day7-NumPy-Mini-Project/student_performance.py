@@ -201,6 +201,27 @@ def summary_statistics(student_performance):
         ]
         print(f"{HEADER[column]:<15}" + "".join(f"{value:<15.2f}" for value in row))
 
+
+def save_dataset(student_performance, normalized):
+
+    formats = ["%d", "%.1f", "%.1f", "%.1f", "%.2f", "%.2f", "%.2f"]
+
+    np.savetxt("processed_student_data.csv", student_performance, delimiter=",",
+               header=",".join(HEADER), comments="", fmt=formats)
+    np.save("processed_student_data.npy", student_performance)
+    np.savetxt("normalized_student_data.csv", normalized, delimiter=",",
+               header=",".join(HEADER), comments="", fmt="%.4f")
+
+    reloaded = np.load("processed_student_data.npy")
+
+    print()
+    print(f"|==== SAVE PROCESSED DATASET ====|\n".center(105))
+    print("Saved : processed_student_data.csv")
+    print("Saved : processed_student_data.npy")
+    print("Saved : normalized_student_data.csv")
+    print(f"Reload check (npy) : {np.array_equal(student_performance, reloaded)}")
+
+
 def main():
 
     student_performance = create_dataset()
@@ -213,6 +234,7 @@ def main():
     statistical_analysis(student_performance)
     normalized = transform_data(student_performance)
     summary_statistics(student_performance)
-    
+    save_dataset(student_performance, normalized)
+
 
 main()
