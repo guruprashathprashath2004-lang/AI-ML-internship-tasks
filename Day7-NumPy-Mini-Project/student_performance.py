@@ -37,7 +37,7 @@ def format_value(value, column):
 
 
 def display_dataset(student_performance, title):
-    print(f"|==== {title} ====|".center(105))
+    print(f"|==== {title} ====|\n".center(105))
 
     if len(student_performance) == 0:
         print("No record found..!")
@@ -51,9 +51,30 @@ def display_dataset(student_performance, title):
         print("" .join(f"{format_value(value, column):<15}" for column,value in enumerate(data)))
 
 
+def explore_properties(student_performance):
+
+    print()
+    print(f"|==== DATASET EXPLORATION ====|\n".center(105))
+    print(f"---- Properties ----".center(30))
+    print(f"Shape     : {student_performance.shape}")
+    print(f"Dimention : {student_performance.ndim}")
+    print(f"Size      : {student_performance.size}")
+    print(f"Data Type : {student_performance.dtype}")
+
+    print()
+    print(f"---- Missing Values ----".center(30))
+    print(f"Student ID   : {np.sum(np.isnan(student_performance[:,0]))}")
+    print(f"Age          : {np.sum(np.isnan(student_performance[:,1]))}")
+    print(f"Studey_Hours : {np.sum(np.isnan(student_performance[:,2]))}")
+    print(f"Attendence   : {np.sum(np.isnan(student_performance[:,3]))}")
+    print(f"Math         : {np.sum(np.isnan(student_performance[:,4]))}")
+    print(f"English      : {np.sum(np.isnan(student_performance[:,5]))}")
+    print(f"Science      : {np.sum(np.isnan(student_performance[:,6]))}")
+
 def main():
 
     student_performance = create_dataset()
-    display_dataset(student_performance, "title")
+    display_dataset(student_performance, "STUDENT PERFORMANCE DATA")
+    explore_properties(student_performance)
 
 main()
