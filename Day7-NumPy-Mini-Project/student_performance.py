@@ -12,6 +12,8 @@ VALID_RANGES = {
     6: (0, 100),
 }
 
+MARKS = [4, 5, 6] 
+
 def create_dataset():
     np.random.seed(42)  # Same data for each and every run
 
@@ -129,6 +131,40 @@ def handle_missing_values(student_performance):
     print(f"\nMissing values left : {np.sum(np.isnan(filled))}")
     return filled
 
+
+def filter_records(student_performance):
+
+    average_marks = student_performance[:, MARKS].mean(axis=1)     
+
+    print()
+    high_performers = student_performance[average_marks >= 85]
+    display_dataset(high_performers[:5], f"HIGH PERFORMERS (AVERAGE >= 85) : {len(high_performers)} students")
+
+    print()
+    low_attendance = student_performance[student_performance[:, 3] < 75]
+    display_dataset(low_attendance[:5], f"LOW ATTENDANCE (< 75%) : {len(low_attendance)} students (first 5)")
+
+    print()
+    hard_workers = student_performance[(student_performance[:, 2] > 6) & (average_marks > 80)]
+    display_dataset(hard_workers[:5], f"STUDY HOURS > 6 AND AVERAGE > 80 : {len(hard_workers)} students")
+
+
+def statistical_analysis(student_performance):
+
+    average_marks = student_performance[:, MARKS].mean(axis=1)
+    best = np.argmax(average_marks)
+    worst = np.argmin(average_marks)
+
+    print()
+    print(f"|==== STATISTICAL ANALYSIS (AVERAGE MARKS) ====|\n".center(105))
+    print(f"Mean               : {np.mean(average_marks):.2f}")
+    print(f"Median             : {np.median(average_marks):.2f}")
+    print(f"Variance           : {np.var(average_marks):.2f}")
+    print(f"Standard Deviation : {np.std(average_marks):.2f}")
+    print(f"Highest Average    : {average_marks[best]:.2f} (Student {int(student_performance[best, 0])})")
+    print(f"Lowest Average     : {average_marks[worst]:.2f} (Student {int(student_performance[worst, 0])})")
+
+
 def main():
 
     student_performance = create_dataset()
@@ -136,6 +172,8 @@ def main():
     explore_properties(student_performance)
     student_performance = clean_invalid_values(student_performance)     
     student_performance = handle_missing_values(student_performance)
-    display_dataset(student_performance[:5], "CLEANED DATASET (FIRST 5 RECORDS)")
+    display_dataset(student_performance, "CLEANED DATASET")
+    filter_records(student_performance)
+    statistical_analysis(student_performance)
 
 main()
