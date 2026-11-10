@@ -165,6 +165,23 @@ def statistical_analysis(student_performance):
     print(f"Lowest Average     : {average_marks[worst]:.2f} (Student {int(student_performance[worst, 0])})")
 
 
+def transform_data(student_performance):
+
+    print()
+    print(f"|==== DATA TRANSFORMATION ====|\n".center(105))
+
+    batches = student_performance.reshape(4, 25, 7)
+    print(f"Reshape      : {student_performance.shape} -> {batches.shape}  (4 batches x 25 students x 7 columns)")
+
+    features = student_performance[:, 1:]               # Student ID skip
+    minimum = features.min(axis=0)                      # shape (6,)
+    maximum = features.max(axis=0)
+    normalized_features = (features - minimum) / (maximum - minimum)      # broadcasting
+    print(f"Broadcasting : {features.shape} - {minimum.shape}  (min-max normalization)")
+    print(f"Normalized range : {normalized_features.min():.1f} to {normalized_features.max():.1f}")
+
+    return np.column_stack((student_performance[:, 0], normalized_features))
+
 def main():
 
     student_performance = create_dataset()
@@ -175,5 +192,6 @@ def main():
     display_dataset(student_performance, "CLEANED DATASET")
     filter_records(student_performance)
     statistical_analysis(student_performance)
+    normalized = transform_data(student_performance)
 
 main()
