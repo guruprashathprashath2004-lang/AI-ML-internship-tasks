@@ -3,6 +3,15 @@ import numpy as np
 RECORDS = 100
 HEADER = ["Student ID", "Age", "Study_Hours", "Attendance", "Math", "English", "Science"]
 
+VALID_RANGES = {
+    1: (15, 60),
+    2: (0, 24),
+    3: (0, 100),
+    4: (0, 100),
+    5: (0, 100),
+    6: (0, 100),
+}
+
 def create_dataset():
     np.random.seed(42)  # Same data for each and every run
 
@@ -55,6 +64,11 @@ def explore_properties(student_performance):
 
     print()
     print(f"|==== DATASET EXPLORATION ====|\n".center(105))
+
+    if len(student_performance) == 0:
+        print("No record found..!")
+        return
+    
     print(f"---- Properties ----".center(30))
     print(f"Shape     : {student_performance.shape}")
     print(f"Dimention : {student_performance.ndim}")
@@ -71,10 +85,31 @@ def explore_properties(student_performance):
     print(f"English      : {np.sum(np.isnan(student_performance[:,5]))}")
     print(f"Science      : {np.sum(np.isnan(student_performance[:,6]))}")
 
+
+def clean_invalid_values(student_performance):
+
+    print()
+    print(f"|==== CLEAN INVALID VALUES ====|\n".center(105))
+
+    if len(student_performance) == 0:
+        print("No record found..!")
+        return
+
+    cleaned = student_performance.copy()
+
+    for column, (low,high) in VALID_RANGES.items():
+        values = cleaned[:, column]
+        invalid_values = (values < low) | (values > high)
+        print(f"{HEADER[column]:<15}: {np.sum(invalid_values)} invalid (valid range {low} - {high})")
+        values[invalid_values] = np.nan
+
+    return cleaned
+
 def main():
 
     student_performance = create_dataset()
     display_dataset(student_performance, "STUDENT PERFORMANCE DATA")
     explore_properties(student_performance)
+    clean_invalid_values(student_performance)
 
 main()
