@@ -182,6 +182,25 @@ def transform_data(student_performance):
 
     return np.column_stack((student_performance[:, 0], normalized_features))
 
+
+def summary_statistics(student_performance):
+
+    print()
+    print(f"|==== SUMMARY STATISTICS ====|\n".center(105))
+
+    columns = ["Column", "Min", "Max", "Mean", "Median", "Std", "Q1", "Q3"]
+    print("-" * (15 * len(columns)))
+    print("".join(f"{name:<15}" for name in columns))
+    print("-" * (15 * len(columns)))
+
+    for column in range(1, student_performance.shape[1]):
+        values = student_performance[:, column]
+        row = [
+            values.min(), values.max(), values.mean(), np.median(values),
+            values.std(), np.percentile(values, 25), np.percentile(values, 75),
+        ]
+        print(f"{HEADER[column]:<15}" + "".join(f"{value:<15.2f}" for value in row))
+
 def main():
 
     student_performance = create_dataset()
@@ -193,5 +212,7 @@ def main():
     filter_records(student_performance)
     statistical_analysis(student_performance)
     normalized = transform_data(student_performance)
+    summary_statistics(student_performance)
+    
 
 main()
