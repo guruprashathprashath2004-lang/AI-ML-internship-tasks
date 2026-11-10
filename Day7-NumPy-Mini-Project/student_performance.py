@@ -105,11 +105,37 @@ def clean_invalid_values(student_performance):
 
     return cleaned
 
+
+def handle_missing_values(student_performance):
+
+    print()
+    print(f"|==== HANDLE MISSING VALUES ====|\n".center(105))
+
+    if len(student_performance) == 0:
+        print("No record found..!")
+        return
+
+    filled = student_performance.copy()
+
+    for column in range(1, filled.shape[1]):          # 0 = Student ID, skip
+        values = filled[:, column]
+        missing = np.isnan(values)
+
+        if np.sum(missing) > 0:
+            mean_value = np.round(np.nanmean(values), 2)       
+            values[missing] = mean_value
+            print(f"{HEADER[column]:<15}: {np.sum(missing)} filled with mean {mean_value}")
+
+    print(f"\nMissing values left : {np.sum(np.isnan(filled))}")
+    return filled
+
 def main():
 
     student_performance = create_dataset()
     display_dataset(student_performance, "STUDENT PERFORMANCE DATA")
     explore_properties(student_performance)
-    clean_invalid_values(student_performance)
+    student_performance = clean_invalid_values(student_performance)     
+    student_performance = handle_missing_values(student_performance)
+    display_dataset(student_performance[:5], "CLEANED DATASET (FIRST 5 RECORDS)")
 
 main()
