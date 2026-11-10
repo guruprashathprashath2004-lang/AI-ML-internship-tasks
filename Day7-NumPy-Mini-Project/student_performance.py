@@ -29,9 +29,31 @@ def create_dataset():
 
     return datas
 
+
+def format_value(value, column):
+    if column == 0:
+        return str(int(value))
+    return f"{value:.1f}"
+
+
+def display_dataset(student_performance, title):
+    print(f"|==== {title} ====|".center(105))
+
+    if len(student_performance) == 0:
+        print("No record found..!")
+        return
+
+    print("-" * (15 * len(HEADER)))
+    print("" .join(f"{head:<15}" for head in HEADER))
+    print("-" * (15 * len(HEADER)))
+
+    for data in student_performance:
+        print("" .join(f"{format_value(value, column):<15}" for column,value in enumerate(data)))
+
+
 def main():
 
     student_performance = create_dataset()
-    print(student_performance)
+    display_dataset(student_performance, "title")
 
 main()
