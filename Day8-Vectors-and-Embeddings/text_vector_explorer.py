@@ -94,9 +94,27 @@ def find_closest_pair():
 
     print(f"\nFarthest pair : {largest[1]} - {largest[2]} ({largest[0]:.2f})")  
 
+
+def find_nearest_words(top_n=3):
+    print("\n|==== NEAREST WORDS ====|\n")
+    target = get_valid_word("Enter a word : ")
+
+    distances = []
+    for word, vector in data.items():
+        if word != target:                   
+            distances.append((calculate_distance(data[target], vector), word))
+
+    distances.sort()
+
+    print(f"\nNearest to '{target}' ({word_category[target]}):")
+    for distance, word in distances[:top_n]:
+        print(f"  {word:<10}{word_category[word]:<12}{distance:.2f}")
+
+
 def main():
     display_all_vectors()
     compare_two_vectors()
     find_closest_pair()
+    find_nearest_words()
 
 main()
