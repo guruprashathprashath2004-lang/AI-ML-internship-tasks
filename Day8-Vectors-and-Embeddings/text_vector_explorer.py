@@ -128,12 +128,38 @@ def visualize_vectors():
     plt.legend()
     plt.show()
 
+def show_menu():
+    print("\n|===== TEXT-TO-VECTOR EXPLORER =====|")
+    print("1. Display All Words and Vectors")
+    print("2. Compare Two Vectors")
+    print("3. Find Closest Vectors")
+    print("4. Find Nearest Words")
+    print("5. Visualize Vectors (2D Plot)")
+    print("6. Exit")
+    print("|===================================|")
+
+
 def main():
-    display_all_vectors()
-    compare_two_vectors()
-    find_closest_pair()
-    find_nearest_words()
-    visualize_vectors()
-    
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-6): ").strip()
+
+        if choice == "1":
+            display_all_vectors()
+        elif choice == "2":
+            compare_two_vectors()
+        elif choice == "3":
+            find_closest_pair()
+        elif choice == "4":
+            find_nearest_words()
+        elif choice == "5":
+            visualize_vectors()
+        elif choice == "6":
+            print("Thank you! Bye.")
+            break
+        else:
+            print("Invalid choice. Please enter 1-6.")
+
 
 main()
+    
