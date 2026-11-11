@@ -1,4 +1,5 @@
 import numpy as np
+from itertools import combinations
 
 HEADER = ["Word", "Category", "Vector", "Dimention"]
 CATEGORIES = {
@@ -26,7 +27,7 @@ for category,words in CATEGORIES.items():
         word_category[word] = category
 
 
-def calculate_distence(vector1, vector2):
+def calculate_distance(vector1, vector2):
     return float(np.linalg.norm(np.array(vector1) - np.array(vector2)))
 
 def display_all_vectors():
@@ -56,7 +57,7 @@ def compare_two_vectors():
     vector1 = np.array(data[word1])
     vector2 = np.array(data[word2])
 
-    distance = calculate_distence(vector1, vector2)
+    distance = calculate_distance(vector1, vector2)
 
     print(f"{word1} ({word_category[word1]}) : {vector1}")
     print(f"{word2} ({word_category[word2]}) : {vector2}")
@@ -68,8 +69,34 @@ def compare_two_vectors():
     else:
         print(f"Result     : '{word1}' and '{word2}' are FAR (different)")
 
+
+def find_closest_pair():
+    pair_distances = []
+    for word1, word2 in combinations(data.keys(), 2):     # unique pairs
+        pair_distances.append((calculate_distance(data[word1], data[word2]), word1, word2))
+
+    pair_distances.sort()          # low -> high
+    smallest = pair_distances[0][0]
+    largest = pair_distances[-1]
+
+    print("\n|==== CLOSEST VECTORS ====|\n")
+    print(f"Total pairs compared : {len(pair_distances)}")
+    print(f"Smallest distance    : {smallest:.2f}\n")
+
+    print("Closest pair(s):")
+    for distance, word1, word2 in pair_distances:
+        if distance == smallest:
+            print(f"  {word1} - {word2}  ({word_category[word1]} / {word_category[word2]})")
+
+    print("\nTop 5 closest pairs:")
+    for distance, word1, word2 in pair_distances[:5]:
+        print(f"  {word1:<10}- {word2:<10}: {distance:.2f}")
+
+    print(f"\nFarthest pair : {largest[1]} - {largest[2]} ({largest[0]:.2f})")  
+
 def main():
     display_all_vectors()
     compare_two_vectors()
+    find_closest_pair()
 
 main()
