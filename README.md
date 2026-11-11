@@ -63,3 +63,12 @@ AI Data Preprocessing Pipeline using NumPy (Student Performance dataset, 100 rec
 **Pipeline:** create dataset, explore, clean invalid values, handle missing data,
 filter records, statistics, reshape and broadcasting (normalization),
 summary statistics, save processed dataset (CSV and npy)
+
+## Day 8: Understanding Vectors & Embeddings
+Text-to-Vector Explorer using manual 2D word vectors (20 words, 5 categories).
+
+**Run:** `python Day8-Vectors-and-Embeddings/<your_file>.py`
+**Requires:** `pip install numpy matplotlib`
+
+**Features:** Display words, vectors and dimensions, compare two vectors,
+Euclidean distance, closest pair and nearest words, bonus: 2D Matplotlib visualization

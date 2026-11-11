@@ -227,14 +227,13 @@ def main():
     student_performance = create_dataset()
     display_dataset(student_performance, "STUDENT PERFORMANCE DATA")
     explore_properties(student_performance)
-    student_performance = clean_invalid_values(student_performance)     
+    student_performance = clean_invalid_values(student_performance)
     student_performance = handle_missing_values(student_performance)
-    display_dataset(student_performance, "CLEANED DATASET")
+    display_dataset(student_performance[:5], "CLEANED DATASET (FIRST 5 RECORDS)")
     filter_records(student_performance)
     statistical_analysis(student_performance)
     normalized = transform_data(student_performance)
     summary_statistics(student_performance)
     save_dataset(student_performance, normalized)
-
 
 main()
