@@ -1,5 +1,6 @@
 import numpy as np
 from itertools import combinations
+import matplotlib.pyplot as plt
 
 HEADER = ["Word", "Category", "Vector", "Dimention"]
 CATEGORIES = {
@@ -11,11 +12,11 @@ CATEGORIES = {
 }
 
 COLORS = {
-    "Animals" : "green",
-    "Vehicles" : "red",
-    "Technologies" : "blue",
-    "Food" : "Orange",
-    "Sports" : "purple"
+    "Animals": "green",
+    "Vehicles": "red",
+    "Technology": "blue",    
+    "Food": "orange",          
+    "Sports": "purple",
 }
 
  # Simple Lookup
@@ -111,10 +112,28 @@ def find_nearest_words(top_n=3):
         print(f"  {word:<10}{word_category[word]:<12}{distance:.2f}")
 
 
+def visualize_vectors():
+    plt.figure(figsize=(9, 7))
+
+    for category, words in CATEGORIES.items():
+        for word, (x, y) in words.items():
+            plt.scatter(x, y, color=COLORS[category], s=80)
+            plt.text(x + 0.12, y + 0.12, word)
+        plt.scatter([], [], color=COLORS[category], label=category)    # legend-kku
+
+    plt.title("Word Vectors in 2D Space")
+    plt.xlabel("Dimension 1")
+    plt.ylabel("Dimension 2")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
 def main():
     display_all_vectors()
     compare_two_vectors()
     find_closest_pair()
     find_nearest_words()
+    visualize_vectors()
+    
 
 main()
