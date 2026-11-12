@@ -69,7 +69,36 @@ def display_document():
     for number, (name, detail) in enumerate(DOCUMENTS.items(), start=1):
         print(f"{number:<4}{name:<20}{str(detail['vector']):<20}{detail['text']}")
 
+
+def get_query_vector():
+
+    print(f"\nEnter {len(TOPICS)} scores for {TOPICS} separated by spaces")
+    print("Example: 3 1 0 0 0")
+
+    while True:
+        text = input("Enter Query vector: ").strip()
+
+        try:
+            query = [float(value) for value in text.split()]         
+        except ValueError as error: 
+            print("ERROR:", error)
+            print("Invalid input..! Please enter numbers only.")
+            continue
+
+        if len(query) != len(TOPICS):
+            print(f"Please enter exactly {len(TOPICS)} numbers.")
+        elif any(value < 0 for value in query):
+            print("Please enter positive numbers.")
+        elif all(value == 0 for value in query):
+            print("Query cannot be all zeros.")
+        else:
+            return query
+
+
 def main():
     display_document()
+    query = get_query_vector()
+    print("Query: ", query)
 
 main()
+
