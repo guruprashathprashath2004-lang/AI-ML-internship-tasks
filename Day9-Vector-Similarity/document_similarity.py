@@ -145,13 +145,41 @@ def display_similarity_matrix():
         row = "".join(f"{value:<7.2f}" for value in matrix[i])
         print(f"{'D' + str(i + 1):<6}{row}")
 
-def main():
-    display_document()
+
+def search_documents():
     query = get_query_vector()
     results = compare_with_every_vector(query)
+
     display_compared_result(results)
     display_top_3(results)
-    display_similarity_matrix()
+
+
+def show_menu():
+    print("\n===== DOCUMENT SIMILARITY ANALYZER =====")
+    print("1. View All Documents")
+    print("2. Search with a Query Vector")
+    print("3. Show Similarity Matrix")
+    print("4. Exit")
+    print("========================================")
+
+
+def main():
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-4): ").strip()
+
+        if choice == "1":
+            display_document()
+        elif choice == "2":
+            search_documents()
+        elif choice == "3":
+            display_similarity_matrix()
+        elif choice == "4":
+            print("Thank you! Bye.")
+            break
+        else:
+            print("Invalid choice. Please enter 1-4.")
+
 
 main()
 
