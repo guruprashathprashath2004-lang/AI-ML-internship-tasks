@@ -1,6 +1,6 @@
 import numpy as np
 
-HEADER = ["Python", "AI", "Machine Learning", "Sports", "Travel"] 
+TOPICS = ["Python", "AI", "Machine Learning", "Sports", "Travel"]
 
 DOCUMENTS = {
     "Python Basics": {
@@ -45,7 +45,31 @@ DOCUMENTS = {
     },
 }
 
+
+def cosine_similarity(vector1, vector2):
+    a = np.array(vector1, dtype=float)
+    b = np.array(vector2, dtype=float)
+
+    length_a = np.linalg.norm(a)
+    length_b = np.linalg.norm(b)
+
+    if length_a == 0 or length_b == 0:
+        return 0.0
+
+    return float(np.dot(a, b) / (length_a * length_b))
+
+
+def display_document():
+    print()
+    print("|==== DOCUMENTS ====|\n".center(90))
+    print("-" * 96)
+    print(f"{'No':<5}{'Title':<20}{'Vector':<20}{'Text'}")
+    print("-" * 96)
+
+    for number, (name, detail) in enumerate(DOCUMENTS.items(), start=1):
+        print(f"{number:<4}{name:<20}{str(detail['vector']):<20}{detail['text']}")
+
 def main():
-    print(f"Total documents: {len(DOCUMENTS)}")
+    display_document()
 
 main()
