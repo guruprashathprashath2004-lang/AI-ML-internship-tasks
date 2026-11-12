@@ -61,7 +61,7 @@ def cosine_similarity(vector1, vector2):
 
 def display_document():
     print()
-    print("|==== DOCUMENTS ====|\n".center(90))
+    print("|==== DOCUMENTS ====|\n".center(96))
     print("-" * 96)
     print(f"{'No':<5}{'Title':<20}{'Vector':<20}{'Text'}")
     print("-" * 96)
@@ -95,10 +95,30 @@ def get_query_vector():
             return query
 
 
+def compare_with_every_vector(query):
+
+    results = []
+
+    for name, detail in DOCUMENTS.items():
+        score = cosine_similarity(query, detail["vector"])
+        results.append((score, name))
+
+    results.sort(key=lambda item: (-item[0], item[1]))
+    return results
+
+def display_compared_result(results):
+    print("\n|==== RANKING (MOST SIMILAR -> LEAST SIMILAR) ====|\n")
+    print(f"{'Rank':<6}{'Document':<22}{'Result':<12}")
+    print("-" * 40)
+
+    for rank, (score, name) in enumerate(results, start=1):
+        print(f"{rank:<6}{name:<22}{score:<12.4f}")
+
 def main():
     display_document()
     query = get_query_vector()
-    print("Query: ", query)
+    results = compare_with_every_vector(query)
+    display_compared_result(results)
 
 main()
 
