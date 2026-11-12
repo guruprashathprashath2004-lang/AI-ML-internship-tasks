@@ -72,3 +72,12 @@ Text-to-Vector Explorer using manual 2D word vectors (20 words, 5 categories).
 
 **Features:** Display words, vectors and dimensions, compare two vectors,
 Euclidean distance, closest pair and nearest words, bonus: 2D Matplotlib visualization
+
+## Day 9: Vector Similarity
+Document Similarity Analyzer using cosine similarity (10 documents, 5-topic vectors).
+
+**Run:** `python Day9-Vector-Similarity/document_similarity.py`
+**Requires:** `pip install numpy`
+
+**Features:** Query vector input, cosine similarity with every document,
+ranking, top 3 results, bonus: similarity matrix of all documents
