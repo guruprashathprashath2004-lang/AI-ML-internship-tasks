@@ -122,12 +122,36 @@ def display_top_3(results):
         print(f"{rank}. {name}  (similarity: {score:.4f})")
         print(f"   {DOCUMENTS[name]['text']}")
 
+
+def display_similarity_matrix():
+    names = list(DOCUMENTS.keys())
+    vectors = [DOCUMENTS[name]["vector"] for name in names]
+    size = len(names)
+
+    matrix = np.zeros((size, size))
+    for i in range(size):
+        for j in range(size):
+            matrix[i][j] = cosine_similarity(vectors[i], vectors[j])
+
+    print("\n|==== SIMILARITY MATRIX ====|\n")
+    for number, name in enumerate(names, start=1):
+        print(f"D{number:<3}= {name}")
+
+    print()
+    print(" " * 6 + "".join(f"{'D' + str(n):<7}" for n in range(1, size + 1)))
+    print("-" * (6 + 7 * size))
+
+    for i in range(size):
+        row = "".join(f"{value:<7.2f}" for value in matrix[i])
+        print(f"{'D' + str(i + 1):<6}{row}")
+
 def main():
     display_document()
     query = get_query_vector()
     results = compare_with_every_vector(query)
     display_compared_result(results)
     display_top_3(results)
+    display_similarity_matrix()
 
 main()
 
