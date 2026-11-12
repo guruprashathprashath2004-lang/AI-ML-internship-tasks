@@ -114,11 +114,20 @@ def display_compared_result(results):
     for rank, (score, name) in enumerate(results, start=1):
         print(f"{rank:<6}{name:<22}{score:<12.4f}")
 
+
+def display_top_3(results):
+    print("\n|==== TOP 3 RESULTS ====|\n")
+
+    for rank, (score, name) in enumerate(results[:3], start=1):
+        print(f"{rank}. {name}  (similarity: {score:.4f})")
+        print(f"   {DOCUMENTS[name]['text']}")
+
 def main():
     display_document()
     query = get_query_vector()
     results = compare_with_every_vector(query)
     display_compared_result(results)
+    display_top_3(results)
 
 main()
 
