@@ -56,9 +56,18 @@ for topic, topic_sentences in DATASET.items():
         topics.append(topic)
 
 
+def display_dataset():
+    print("-" * 80)
+    print(f"{'No':<4}{'Topic':<15}{'Sentence'}")
+    print("-" * 80)
+
+    for number, (topic, sentence) in enumerate(zip(topics, sentences), start=1):
+        print(f"{number:<4}{topic:<15}{sentence}")
+
 def main():
     print(f"Total Sentences : {len(sentences)}")
     print(sentences[0], "->", topics[0])
+    display_dataset()
 
 
 main()
