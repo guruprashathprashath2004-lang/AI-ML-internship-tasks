@@ -118,13 +118,45 @@ def display_top_results(scores, order):
         print(f"{rank}. [{topics[index]}] {sentences[index]}")
         print(f"   Similarity: {scores[index]:.4f}")
 
-def main():
-    model = model_load()
-    embeddings = get_embeddings(model)
+def get_query():
+    while True:
+        query = input("\nEnter your query: ").strip()
+        if query:
+            return query
+        print("Query cannot be empty.")
 
-    query = "I want to learn artificial intelligence"
+
+def search_sentences(model, embeddings):
+    query = get_query()
     scores, order = search(model, embeddings, query)
     display_top_results(scores, order)
 
 
-main()  
+def show_menu():
+    print("\n===== SEMANTIC SENTENCE MATCHER =====")
+    print("1. View All Sentences")
+    print("2. Search by Meaning")
+    print("3. Exit")
+    print("=====================================")
+
+
+def main():
+    model = model_load()
+    embeddings = get_embeddings(model)
+
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-3): ").strip()
+
+        if choice == "1":
+            display_dataset()
+        elif choice == "2":
+            search_sentences(model, embeddings)
+        elif choice == "3":
+            print("Thank you! Bye.")
+            break
+        else:
+            print("Invalid choice. Please enter 1-3.")
+
+
+main()
