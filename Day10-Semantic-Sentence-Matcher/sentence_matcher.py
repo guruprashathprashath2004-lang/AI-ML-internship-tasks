@@ -100,11 +100,23 @@ def get_embeddings(model):
 
     return sentence_embeddings(model)
 
+
+def search(model, embeddings, query):
+    query_embedding = model.encode(query, normalize_embeddings=True)
+    print(f"\nQuery embedding shape : {query_embedding.shape}")
+    print(f"First 5 values        : {np.round(query_embedding[:5], 4)}")
+
+    scores = embeddings @ query_embedding      
+    order = np.argsort(-scores)                
+    return scores, order
+
 def main():
-    display_dataset()
     model = model_load()
-    sentence_embeddings(model)
     embeddings = get_embeddings(model)
+
+    query = "I want to learn artificial intelligence"
+    scores, order = search(model, embeddings, query)
+    print(order[:5])
 
 
 main()  
