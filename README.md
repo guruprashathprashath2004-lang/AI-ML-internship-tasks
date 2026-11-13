@@ -81,3 +81,12 @@ Document Similarity Analyzer using cosine similarity (10 documents, 5-topic vect
 
 **Features:** Query vector input, cosine similarity with every document,
 ranking, top 3 results, bonus: similarity matrix of all documents
+
+## Day 10: Text Embeddings & Semantic Meaning
+Semantic Sentence Matcher using sentence-transformers (all-MiniLM-L6-v2) with 30 sentences.
+
+**Run:** `python Day10-Semantic-Sentence-Matcher/sentence_matcher.py`
+**Requires:** `pip install sentence-transformers numpy` (model downloads on first run)
+
+**Features:** Sentence embeddings (384 dimensions), embeddings saved and reused,
+query embedding, cosine similarity, ranking, top 5 semantic matches
