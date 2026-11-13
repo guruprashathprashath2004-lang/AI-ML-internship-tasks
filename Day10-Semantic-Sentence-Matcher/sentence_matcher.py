@@ -1,8 +1,9 @@
 import numpy as np
 from sentence_transformers import SentenceTransformer
+import os
 
 MODEL_NAME = "all-MiniLM-L6-v2"
-EMBEDDINGD_FILE = "sentence_embedding.npy"
+EMBEDDINGS_FILE = "sentence_embedding.npy"
 TOP_N = 5
 
 # Topic -> 6 sentences (5 topics x 6 = 30 sentences)
@@ -79,14 +80,31 @@ def sentence_embeddings(model):
     
     print("Creating embeddings for all sentences")
     embeddings = model.encode(sentences, normalize_embeddings= True)
+
+    np.save(EMBEDDINGS_FILE, embeddings)
     print(f"Embeddings shape : {embeddings.shape}")
+    print(f"Saved to : {EMBEDDINGS_FILE}")
 
     return embeddings
+
+
+def get_embeddings(model):
+    if os.path.exists(EMBEDDINGS_FILE):
+        embeddings = np.load(EMBEDDINGS_FILE)
+
+        if embeddings.shape[0] == len(sentences):
+            print(f"Loaded saved embeddings from {EMBEDDINGS_FILE} {embeddings.shape}")
+            return embeddings    
+
+        print("Saved embeddings do not match the sentences. Regenerating...")
+
+    return sentence_embeddings(model)
 
 def main():
     display_dataset()
     model = model_load()
     sentence_embeddings(model)
+    embeddings = get_embeddings(model)
 
 
-main()
+main()  
