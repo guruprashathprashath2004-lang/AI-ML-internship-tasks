@@ -1,4 +1,5 @@
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGD_FILE = "sentence_embedding.npy"
@@ -64,10 +65,28 @@ def display_dataset():
     for number, (topic, sentence) in enumerate(zip(topics, sentences), start=1):
         print(f"{number:<4}{topic:<15}{sentence}")
 
+
+def model_load():
+
+    print(f"Loading embedding model '{MODEL_NAME}' (For the 1st time the model will be download, so please wait..!)...")
+    model = SentenceTransformer(MODEL_NAME)
+    print(f"{MODEL_NAME} Model loaded")
+
+    return model
+
+
+def sentence_embeddings(model):
+    
+    print("Creating embeddings for all sentences")
+    embeddings = model.encode(sentences, normalize_embeddings= True)
+    print(f"Embeddings shape : {embeddings.shape}")
+
+    return embeddings
+
 def main():
-    print(f"Total Sentences : {len(sentences)}")
-    print(sentences[0], "->", topics[0])
     display_dataset()
+    model = model_load()
+    sentence_embeddings(model)
 
 
 main()
