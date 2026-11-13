@@ -110,13 +110,21 @@ def search(model, embeddings, query):
     order = np.argsort(-scores)                
     return scores, order
 
+
+def display_top_results(scores, order):
+    print(f"\n|==== TOP {TOP_N} MATCHES ====|\n")
+
+    for rank, index in enumerate(order[:TOP_N], start=1):
+        print(f"{rank}. [{topics[index]}] {sentences[index]}")
+        print(f"   Similarity: {scores[index]:.4f}")
+
 def main():
     model = model_load()
     embeddings = get_embeddings(model)
 
     query = "I want to learn artificial intelligence"
     scores, order = search(model, embeddings, query)
-    print(order[:5])
+    display_top_results(scores, order)
 
 
 main()  
