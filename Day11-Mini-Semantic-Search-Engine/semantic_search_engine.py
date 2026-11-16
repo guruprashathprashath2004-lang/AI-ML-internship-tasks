@@ -106,23 +106,44 @@ def get_embedding(model):
     return embeddings
 
 
-def search(model, embeddings, query):
+def search(model, embeddings, query, category="All"):
 
     query_embeddings = model.encode(query, normalize_embeddings=True)
     scores = embeddings @ query_embeddings
     order = np.argsort(-scores)
 
-    print(f"\n|==== TOP {TOP_N} RESULTS ====|\n")
-    for rank in range(TOP_N):
-        index = order[rank]
-        print(f"{rank + 1}. [{categories[index]}] {texts[index]}")
-        print(f"   Similarity: {scores[index]:.4f}")
+    print(f"\n|==== TOP {TOP_N} RESULTS (Category: {category}) ====|\n")
+
+    count = 0
+    for index in order:
+        if category == "All" or categories[index] == category:
+            count += 1
+            print(f"{count}. [{categories[index]}] {texts[index]}")
+            print(f"   Similarity: {scores[index]:.4f}")
+            if count == TOP_N:
+                break
+
+
+def choose_category():
+    print("\nCategories:")
+    print("0. All")
+    for i in range(len(CATEGORY_LIST)):
+        print(f"{i + 1}. {CATEGORY_LIST[i]}")
+
+    while True:
+        choice = input("Choose category number: ").strip()
+        if choice == "0":
+            return "All"
+        if choice.isdigit() and 1 <= int(choice) <= len(CATEGORY_LIST):
+            return CATEGORY_LIST[int(choice) - 1]
+        print("Invalid choice.")
 
 
 def main():
     display_dataset()
     model = model_load()
     embeddings = get_embedding(model)
-    search(model, embeddings, "What is NumPy used for?")
+    category = choose_category()
+    search(model, embeddings, "What is NumPy used for?", category)
 
 main()
