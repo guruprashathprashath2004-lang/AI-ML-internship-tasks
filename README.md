@@ -90,3 +90,12 @@ Semantic Sentence Matcher using sentence-transformers (all-MiniLM-L6-v2) with 30
 
 **Features:** Sentence embeddings (384 dimensions), embeddings saved and reused,
 query embedding, cosine similarity, ranking, top 5 semantic matches
+
+Day 11 - Vector Search
+
+- Studied vector search, vector database concepts (document, embedding, metadata) and the connection with RAG.
+- Developed a Mini Semantic Search Engine in Python with 50 documents across 5 categories (Python, NumPy, Pandas, Machine Learning, AI).
+- Generated document embeddings with sentence-transformers, saved them with np.save, and reused them on later runs.
+- Generated a query embedding, calculated similarity, ranked documents and displayed the top 5 results with scores.
+- Bonus: added category filtering, similarity score display and the ability to add new documents.
+- Committed the work step by step to GitHub.
