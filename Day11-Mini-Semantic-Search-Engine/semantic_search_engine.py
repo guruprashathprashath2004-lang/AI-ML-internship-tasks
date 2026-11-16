@@ -1,4 +1,6 @@
 import numpy as np
+import os
+from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGS_FILE = "document_embeddings.npy"
@@ -80,8 +82,31 @@ def display_dataset():
         print(f"{(i + 1):<5}{catogories[i]:<20}{texts[i]}")
 
 
+def model_load():
+
+    print("Loading model (Please wait for first time load..!) ")
+    model = SentenceTransformer(MODEL_NAME)
+    print(f"Model '{MODEL_NAME}' Loaded.")
+    return model
+
+
+def get_embedding(model):
+    if os.path.exists(EMBEDDINGS_FILE):
+        embeddings = np.load(EMBEDDINGS_FILE)
+        if embeddings.shape[0] == len(texts):
+            print(f"Load saved embeddings : {embeddings.shape}")
+            return embeddings
+
+    print("Generating embeddings...")
+    embeddings = model.encode(texts, normalize_embeddings=True)
+    np.save(EMBEDDINGS_FILE, embeddings)
+    print(f"Load saved embeddings : {embeddings.shape}")
+    return embeddings
+
 def main():
     display_dataset()
+    model = model_load()
+    embeddings = get_embedding()
 
 
 main()
