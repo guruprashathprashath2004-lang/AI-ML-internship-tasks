@@ -5,7 +5,7 @@ EMBEDDINGS_FILE = "document_embeddings.npy"
 TOP_N = 5
 CATEGORY_LIST = ["Python", "Numpy", "Pandas", "Machine Learning", "AI"]
 
-documents = [
+DATASET = [
     ["Python", "Python is a high-level language known for readable code."],
     ["Python", "Indentation decides which lines belong to a block in Python."],
     ["Python", "Lists store many items in a single ordered collection."],
@@ -64,14 +64,24 @@ documents = [
 
 texts = []
 catogories = []
-for item in documents:
+for item in DATASET:
     texts.append(item[1])
     catogories.append(item[0])
 
 
+def display_dataset():
+    print("|==== ALL DATAS ====|\n".center(85))
+
+    print("-" * 90)
+    print(f"{'No':<5}{'Category':<20}{'text'}")
+    print("-" * 90)
+
+    for i in range(len(texts)):
+        print(f"{(i + 1):<5}{catogories[i]:<20}{texts[i]}")
+
+
 def main():
-    print(f"Total Document : {len(texts)}")
-    print(catogories[0], "->", texts[0])
+    display_dataset()
 
 
 main()
