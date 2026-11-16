@@ -139,6 +139,27 @@ def choose_category():
         print("Invalid choice.")
 
 
+def add_document(model, embeddings):
+    print("\n|==== ADD NEW DOCUMENT ====|")
+
+    text = ""
+    while text == "":
+        text = input("Enter document text: ").strip()
+
+    category = choose_category()
+    if category == "All":
+        category = input("Enter new category name: ").strip()
+
+    new_embedding = model.encode(text, normalize_embeddings=True)
+
+    texts.append(text)
+    categories.append(category)
+    embeddings = np.vstack([embeddings, new_embedding])
+
+    print("Document added! Total documents:", len(texts))
+    return embeddings
+
+
 def main():
     display_dataset()
     model = model_load()
