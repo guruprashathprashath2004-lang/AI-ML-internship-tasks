@@ -160,11 +160,45 @@ def add_document(model, embeddings):
     return embeddings
 
 
+def show_menu():
+    print("\n===== MINI SEMANTIC SEARCH ENGINE =====")
+    print("1. Search Documents")
+    print("2. Search by Category")
+    print("3. Add New Document")
+    print("4. View All Documents")
+    print("5. Exit")
+    print("=======================================")
+
+
+def get_query():
+    query = ""
+    while query == "":
+        query = input("\nEnter your question: ").strip()
+    return query
+
+
 def main():
-    display_dataset()
     model = model_load()
     embeddings = get_embedding(model)
-    category = choose_category()
-    search(model, embeddings, "What is NumPy used for?", category)
+
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-5): ").strip()
+
+        if choice == "1":
+            search(model, embeddings, get_query())
+        elif choice == "2":
+            category = choose_category()
+            search(model, embeddings, get_query(), category)
+        elif choice == "3":
+            embeddings = add_document(model, embeddings)
+        elif choice == "4":
+            display_dataset()
+        elif choice == "5":
+            print("Thank you! Bye.")
+            break
+        else:
+            print("Invalid choice. Please enter 1-5.")
+
 
 main()
