@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGS_FILE = "document_embeddings.npy"
 TOP_N = 5
-CATEGORY_LIST = ["Python", "Numpy", "Pandas", "Machine Learning", "AI"]
+CATEGORY_LIST = ["Python", "NumPy", "Pandas", "Machine Learning", "AI"]
 
 DATASET = [
     ["Python", "Python is a high-level language known for readable code."],
@@ -65,13 +65,14 @@ DATASET = [
 ]
 
 texts = []
-catogories = []
+categories = []
 for item in DATASET:
     texts.append(item[1])
-    catogories.append(item[0])
+    categories.append(item[0])
 
 
 def display_dataset():
+    
     print("|==== ALL DATAS ====|\n".center(85))
 
     print("-" * 90)
@@ -79,7 +80,7 @@ def display_dataset():
     print("-" * 90)
 
     for i in range(len(texts)):
-        print(f"{(i + 1):<5}{catogories[i]:<20}{texts[i]}")
+        print(f"{(i + 1):<5}{categories[i]:<20}{texts[i]}")
 
 
 def model_load():
@@ -91,6 +92,7 @@ def model_load():
 
 
 def get_embedding(model):
+    
     if os.path.exists(EMBEDDINGS_FILE):
         embeddings = np.load(EMBEDDINGS_FILE)
         if embeddings.shape[0] == len(texts):
@@ -103,10 +105,24 @@ def get_embedding(model):
     print(f"Load saved embeddings : {embeddings.shape}")
     return embeddings
 
+
+def search(model, embeddings, query):
+
+    query_embeddings = model.encode(query, normalize_embeddings=True)
+    scores = embeddings @ query_embeddings
+    order = np.argsort(-scores)
+
+    print(f"\n|==== TOP {TOP_N} RESULTS ====|\n")
+    for rank in range(TOP_N):
+        index = order[rank]
+        print(f"{rank + 1}. [{categories[index]}] {texts[index]}")
+        print(f"   Similarity: {scores[index]:.4f}")
+
+
 def main():
     display_dataset()
     model = model_load()
-    embeddings = get_embedding()
-
+    embeddings = get_embedding(model)
+    search(model, embeddings, "What is NumPy used for?")
 
 main()
