@@ -123,7 +123,7 @@ DATASET = [
     ["Training", "Training Completion", "The internship is complete when all tasks and the final project are submitted. HR then issues the completion letter."],
 ]
 
-# Ovvoru item: [query, expected document name]
+# [query, expected document name]
 TESTS = [
     ["What happens if I miss my training session?", "Training Missed Session"],
     ["How many days of annual leave do I get?", "Leave Policy"],
@@ -218,9 +218,9 @@ def get_embeddings(model):
 
 
 def search(model, embeddings, query):
-    query_embedding = model.encode(query, normalize_embeddings=True)    # (384,)
-    scores = embeddings @ query_embedding                               # (n,)
-    order = np.argsort(-scores)                                         # best mudhal
+    query_embedding = model.encode(query, normalize_embeddings=True)    
+    scores = embeddings @ query_embedding                              
+    order = np.argsort(-scores)                                         
     return scores, order[:TOP_N]
 
 
@@ -287,8 +287,8 @@ def upload_document(model, embeddings):
         return embeddings
 
     old_count = len(chunks)
-    add_document_to_lists(category, name, text)          # chunks, categories, doc_names-la add
-    new_chunks = chunks[old_count:]                      # pudhusa vandha chunks mattum
+    add_document_to_lists(category, name, text)         
+    new_chunks = chunks[old_count:]                      
 
     new_embeddings = model.encode(new_chunks, normalize_embeddings=True)
     embeddings = np.vstack([embeddings, new_embeddings])
