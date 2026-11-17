@@ -241,6 +241,39 @@ def display_answer(scores, top):
     print(make_answer(scores, top))
 
 
+def upload_document(model, embeddings):
+    print("\n|==== UPLOAD DOCUMENT ====|")
+
+    path = input("Enter text file path (.txt): ").strip()
+    if not os.path.exists(path):
+        print("File not found.")
+        return embeddings
+
+    with open(path, "r", encoding="utf-8") as file:
+        text = file.read()
+
+    if clean_text(text) == "":
+        print("File is empty.")
+        return embeddings
+
+    name = input("Document name: ").strip()
+    category = input("Category: ").strip()
+    if name == "" or category == "":
+        print("Name and category cannot be empty.")
+        return embeddings
+
+    old_count = len(chunks)
+    add_document_to_lists(category, name, text)          # chunks, categories, doc_names-la add
+    new_chunks = chunks[old_count:]                      # pudhusa vandha chunks mattum
+
+    new_embeddings = model.encode(new_chunks, normalize_embeddings=True)
+    embeddings = np.vstack([embeddings, new_embeddings])
+    np.save(EMBEDDINGS_FILE, embeddings)
+
+    print(f"Added {len(new_chunks)} chunks from '{name}'. Total chunks: {len(chunks)}")
+    return embeddings
+
+
 def main():
     build_knowledge_base()
     model = load_model()
