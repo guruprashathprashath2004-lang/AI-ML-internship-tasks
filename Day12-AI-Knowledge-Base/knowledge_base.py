@@ -1,4 +1,6 @@
 import numpy as np
+import os
+from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGS_FILE = "kb_embeddings.npy"
@@ -168,9 +170,33 @@ def display_chunks():
 
     print("\nTotal chunks:", len(chunks))
 
+
+def load_model():
+    print(f"Loading '{MODEL_NAME}' model (Please wait for first time load)...")
+    model = SentenceTransformer(MODEL_NAME)
+    print(f"Model '{MODEL_NAME}' loaded.")
+    return model
+
+
+def get_embeddings(model):
+
+    if os.path.exists(EMBEDDINGS_FILE):
+        embeddings = np.load(EMBEDDINGS_FILE)
+        if embeddings.shape[0] == len(chunks):
+            print("Loaded saved embeddings:", embeddings.shape)
+            return embeddings
+
+    print("Generating embeddings...")
+    embeddings = model.encode(chunks, normalize_embeddings=True)
+    np.save(EMBEDDINGS_FILE, embeddings)
+    print("Generated embeddings:", embeddings.shape)
+    return embeddings
+
+
 def main():
     build_knowledge_base()
-    display_chunks()
+    model = load_model()
+    embeddings = get_embeddings(model)
 
 
 main()
