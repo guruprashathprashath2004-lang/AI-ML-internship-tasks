@@ -3,10 +3,10 @@ import numpy as np
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGS_FILE = "kb_embeddings.npy"
 TOP_N = 5
-CHUNK_SIZE = 2          # oru chunk-la ethana sentences
-THRESHOLD = 0.35        # idhukku keezha irundha "relevant illa" (test pannitu maathu)
+CHUNK_SIZE = 2         
+THRESHOLD = 0.35       
 
-# Ovvoru item: [category, document name, full text]   (100 documents)
+# [category, document name, full text]   (100 documents)
 DATASET = [
     # ---------- Python (17) ----------
     ["Python", "Python Introduction", "Python is a high-level language known for readable code. It is widely used in web development, data science and automation."],
@@ -127,11 +127,10 @@ doc_names = []
 
 
 def clean_text(text):
-    return "" .join(text.split())
+    return " ".join(text.split())          
 
 
 def split_into_chunks(text):
-    
     sentences = text.split(". ")
     result = []
 
@@ -141,10 +140,11 @@ def split_into_chunks(text):
         if not chunk.endswith("."):
             chunk = chunk + "."
         result.append(chunk)
-    
+
     return result
 
-def add_documents_to_lists(category, name, text):
+
+def add_document_to_lists(category, name, text):
     text = clean_text(text)
     for chunk in split_into_chunks(text):
         chunks.append(chunk)
@@ -154,13 +154,23 @@ def add_documents_to_lists(category, name, text):
 
 def build_knowledge_base():
     for item in DATASET:
-        add_documents_to_lists(item[0], item[1], item[2])
+        add_document_to_lists(item[0], item[1], item[2])
+
+
+def display_chunks():
+    print("|==== KNOWLEDGE BASE ====|\n".center(110))
+    print("-" * 110)
+    print(f"{'No':<5}{'Category':<16}{'Document':<32}{'Chunk'}")
+    print("-" * 110)
+
+    for i in range(len(chunks)):
+        print(f"{i + 1:<5}{categories[i]:<16}{doc_names[i]:<32}{chunks[i]}")
+
+    print("\nTotal chunks:", len(chunks))
 
 def main():
     build_knowledge_base()
-    print("Documents :", len(DATASET))
-    print("Chunks    :", len(chunks))
-    print(chunks[0], "|", doc_names[0])
+    display_chunks()
 
 
 main()
