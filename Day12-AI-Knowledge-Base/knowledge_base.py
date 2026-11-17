@@ -333,17 +333,48 @@ def run_evaluation(model, embeddings):
     print(f"Top-5 correct : {top5} / {total}  ({top5 / total * 100:.0f}%)")
 
 
+def show_menu():
+    print("\n===== AI KNOWLEDGE BASE SEARCH SYSTEM =====")
+    print("1. Search the Knowledge Base")
+    print("2. Upload a Document")
+    print("3. View All Chunks")
+    print("4. Run Evaluation (20 test queries)")
+    print("5. Exit")
+    print("===========================================")
+
+
+def get_query():
+    query = ""
+    while query == "":
+        query = input("\nAsk your question: ").strip()
+    return query
+
+
 def main():
     build_knowledge_base()
     model = load_model()
     embeddings = get_embeddings(model)
-    run_evaluation(model, embeddings)
 
-    query = "What happens if I miss my training session?"
-    scores, top = search(model, embeddings, query)
-    display_results(query, scores, top)
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-5): ").strip()
 
-    display_answer(scores, top)
+        if choice == "1":
+            query = get_query()
+            scores, top = search(model, embeddings, query)
+            display_results(query, scores, top)
+            display_answer(scores, top)
+        elif choice == "2":
+            embeddings = upload_document(model, embeddings)
+        elif choice == "3":
+            display_chunks()
+        elif choice == "4":
+            run_evaluation(model, embeddings)
+        elif choice == "5":
+            print("Thank you! Bye.")
+            break
+        else:
+            print("Invalid choice. Please enter 1-5.")
 
 
 main()
