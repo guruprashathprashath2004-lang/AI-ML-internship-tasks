@@ -3,10 +3,10 @@ import numpy as np
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMBEDDINGS_FILE = "kb_embeddings.npy"
 TOP_N = 5
-CHUNK_SIZE = 2         
-THRESHOLD = 0.35  
+CHUNK_SIZE = 2          # oru chunk-la ethana sentences
+THRESHOLD = 0.35        # idhukku keezha irundha "relevant illa" (test pannitu maathu)
 
-# [category, document name, full text]   (100 documents)
+# Ovvoru item: [category, document name, full text]   (100 documents)
 DATASET = [
     # ---------- Python (17) ----------
     ["Python", "Python Introduction", "Python is a high-level language known for readable code. It is widely used in web development, data science and automation."],
@@ -126,8 +126,41 @@ categories = []
 doc_names = []
 
 
+def clean_text(text):
+    return "" .join(text.split())
+
+
+def split_into_chunks(text):
+    
+    sentences = text.split(". ")
+    result = []
+
+    for i in range(0, len(sentences), CHUNK_SIZE):
+        part = sentences[i:i + CHUNK_SIZE]
+        chunk = ". ".join(part)
+        if not chunk.endswith("."):
+            chunk = chunk + "."
+        result.append(chunk)
+    
+    return result
+
+def add_documents_to_lists(category, name, text):
+    text = clean_text(text)
+    for chunk in split_into_chunks(text):
+        chunks.append(chunk)
+        categories.append(category)
+        doc_names.append(name)
+
+
+def build_knowledge_base():
+    for item in DATASET:
+        add_documents_to_lists(item[0], item[1], item[2])
+
 def main():
-    print("Total documents:", len(DATASET))
+    build_knowledge_base()
+    print("Documents :", len(DATASET))
+    print("Chunks    :", len(chunks))
+    print(chunks[0], "|", doc_names[0])
 
 
 main()
