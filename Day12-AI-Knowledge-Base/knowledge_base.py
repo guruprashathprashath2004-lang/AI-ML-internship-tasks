@@ -218,6 +218,29 @@ def display_results(query, scores, top):
         print(f"{rank + 1}. {doc_names[index]} [{categories[index]}]  score: {scores[index]:.4f}")
         print(f"   {chunks[index]}")
 
+
+def make_answer(scores, top):
+    relevant = []
+    for index in top:
+        if scores[index] >= THRESHOLD:
+            relevant.append(index)
+
+    if len(relevant) == 0:
+        return "Sorry, no relevant information found in the knowledge base."
+
+    answer = f"Based on '{doc_names[relevant[0]]}': {chunks[relevant[0]]}"
+
+    if len(relevant) > 1:
+        answer += f" Also see '{doc_names[relevant[1]]}': {chunks[relevant[1]]}"
+
+    return answer
+
+
+def display_answer(scores, top):
+    print("\n|==== AI ANSWER ====|")
+    print(make_answer(scores, top))
+
+
 def main():
     build_knowledge_base()
     model = load_model()
@@ -226,6 +249,8 @@ def main():
     query = "What happens if I miss my training session?"
     scores, top = search(model, embeddings, query)
     display_results(query, scores, top)
+
+    display_answer(scores, top)
 
 
 main()
