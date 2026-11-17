@@ -193,10 +193,39 @@ def get_embeddings(model):
     return embeddings
 
 
+def search(model, embeddings, query):
+    query_embedding = model.encode(query, normalize_embeddings=True)    # (384,)
+    scores = embeddings @ query_embedding                               # (n,)
+    order = np.argsort(-scores)                                         # best mudhal
+    return scores, order[:TOP_N]
+
+
+def display_results(query, scores, top):
+    print("\n" + "=" * 70)
+    print("Query :", query)
+    print("=" * 70)
+
+    best = top[0]
+    print("\nTOP RESULT")
+    print(f"Source Document : {doc_names[best]}")
+    print(f"Category        : {categories[best]}")
+    print(f"Similarity      : {scores[best]:.4f}")
+    print(f"Relevant Text   : {chunks[best]}")
+
+    print(f"\n|==== TOP {TOP_N} CHUNKS ====|")
+    for rank in range(len(top)):
+        index = top[rank]
+        print(f"{rank + 1}. {doc_names[index]} [{categories[index]}]  score: {scores[index]:.4f}")
+        print(f"   {chunks[index]}")
+
 def main():
     build_knowledge_base()
     model = load_model()
     embeddings = get_embeddings(model)
+
+    query = "What happens if I miss my training session?"
+    scores, top = search(model, embeddings, query)
+    display_results(query, scores, top)
 
 
 main()
