@@ -123,6 +123,30 @@ DATASET = [
     ["Training", "Training Completion", "The internship is complete when all tasks and the final project are submitted. HR then issues the completion letter."],
 ]
 
+# Ovvoru item: [query, expected document name]
+TESTS = [
+    ["What happens if I miss my training session?", "Training Missed Session"],
+    ["How many days of annual leave do I get?", "Leave Policy"],
+    ["What time do training sessions begin?", "Training Schedule"],
+    ["Can I work from home?", "Remote Work Policy"],
+    ["When will I receive my salary?", "Salary Payment Policy"],
+    ["How do I get my internship certificate?", "Training Certificate"],
+    ["What should I wear to the office?", "Dress Code Policy"],
+    ["How long should my password be?", "Password Policy"],
+    ["How do I submit my tasks?", "Training GitHub Submission"],
+    ["What is a DataFrame?", "Pandas DataFrame"],
+    ["How do I join two tables?", "Pandas Merge"],
+    ["How can I fill empty values in a table?", "Pandas Missing Values"],
+    ["What is broadcasting in NumPy?", "NumPy Broadcasting"],
+    ["How do I change the shape of an array?", "NumPy Reshape"],
+    ["What is overfitting?", "Overfitting"],
+    ["How do computers turn text into numbers?", "Embeddings"],
+    ["How do I handle errors in Python?", "Python Errors"],
+    ["How do I keep project libraries separate?", "Python Virtual Environments"],
+    ["How much notice must I give when I resign?", "Resignation Policy"],
+    ["What are the laptop requirements for the internship?", "Training Laptop Requirements"],
+]
+
 chunks = []
 categories = []
 doc_names = []
@@ -274,10 +298,46 @@ def upload_document(model, embeddings):
     return embeddings
 
 
+def run_evaluation(model, embeddings):
+    print("\n|==== EVALUATION ====|\n")
+    top1 = 0
+    top5 = 0
+
+    for test in TESTS:
+        query = test[0]
+        expected = test[1]
+
+        scores, top = search(model, embeddings, query)
+
+        names = []                                  # top 5 document names
+        for index in top:
+            names.append(doc_names[index])
+
+        if names[0] == expected:
+            top1 += 1
+            status = "TOP-1"
+        elif expected in names:
+            top5 += 0
+            status = "TOP-5"
+        else:
+            status = "MISS "
+
+        if expected in names:
+            top5 += 1
+
+        print(f"{status}  {query}")
+        print(f"        expected: {expected} | got: {names[0]} ({scores[top[0]]:.2f})")
+
+    total = len(TESTS)
+    print(f"\nTop-1 correct : {top1} / {total}  ({top1 / total * 100:.0f}%)")
+    print(f"Top-5 correct : {top5} / {total}  ({top5 / total * 100:.0f}%)")
+
+
 def main():
     build_knowledge_base()
     model = load_model()
     embeddings = get_embeddings(model)
+    run_evaluation(model, embeddings)
 
     query = "What happens if I miss my training session?"
     scores, top = search(model, embeddings, query)
