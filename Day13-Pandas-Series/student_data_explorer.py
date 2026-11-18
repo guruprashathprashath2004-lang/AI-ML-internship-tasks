@@ -11,9 +11,6 @@ average = total / 2
 
 passed = (python_marks >= 40) & (ai_marks >= 40)
 
-
-
-
 def display_all_students():
     print("|==== STUDENTS DATA ====|".center(61))
     print("-" * 64)
@@ -114,7 +111,9 @@ def main():
     lowest_marks()
     average_marks()
     scoring_above_75()
+    
     grade = generate_grade()
     passing_students(grade)
+
 
 main()
