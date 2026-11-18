@@ -2,11 +2,15 @@ import pandas as pd
 
 names = pd.Series(["Kamal", "Nimal", "Sunil", "Amal", "Ruwan", "Kasun", "Dilani", "Nadeesha", "Saman", "Chamari"])
 ages = pd.Series([20, 21, 19, 22, 20, 21, 19, 23, 22, 20])
-python_marks = pd.Series([55, 72, 91, 68, 77, 95, 80, 88, 91, 74])
-ai_marks = pd.Series([98, 65, 88, 59, 82, 70, 70, 92, 91, 66])
+python_marks = pd.Series([55, 32, 91, 68, 77, 95, 80, 38, 91, 74])
+ai_marks = pd.Series([98, 65, 88, 39, 82, 70, 70, 92, 91, 36])
 
 total = python_marks + ai_marks
 average = total / 2
+
+passed = (python_marks > 40) & (ai_marks > 40)
+
+
 
 
 def display_all_students():
@@ -74,11 +78,42 @@ def scoring_above_75():
     print(f"\nTotal Count : {len(above)}")
 
 
+def generate_grade():
+
+    grades = []
+
+    for i in range(len(names)):
+        if passed.iloc[i]:
+            grades.append("Pass")
+        else:
+            grades.append("Fail")
+
+    return pd.Series(grades)
+
+
+def passing_students(grade):
+
+    print("|==== STUDENTS GRADE ====|".center(67))
+    print("-" * 67)
+    print(f"{'No':<5}{'Names':<10}{'Ages':<6}{'Python Marks':<14}{'AI Marks':<10}{'Total':<7}{'Average':<9}{'Grade':<6}")
+    print("-" * 67)
+
+    for i in range(len(names)):
+        print(f"{i+1:<5}{names.iloc[i]:<10}{ages.iloc[i]:<6}{python_marks.iloc[i]:<14}{ai_marks.iloc[i]:<10}{total.iloc[i]:<7}{average.iloc[i]:<9}{grade.iloc[i]:<6}")
+
+    print("-" * 67)
+
+    print(f"Passed students count : {(grade == "Pass").sum()}")
+    print(f"Failed students count : {(grade == "Fail").sum()}")
+
+
 def main():
     display_all_students()
     highest_marks()
     lowest_marks()
     average_marks()
     scoring_above_75()
+    grade = generate_grade()
+    passing_students(grade)
 
 main()
