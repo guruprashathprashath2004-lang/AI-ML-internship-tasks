@@ -105,3 +105,12 @@ AI Knowledge Base Search System with chunking, embeddings, semantic search, thre
 
 **Run:** `python Day12-AI-Knowledge-Base/knowledge_base.py`
 **Requires:** `pip install sentence-transformers numpy`
+
+## Day 13: Pandas Introduction + Series
+Student Data Explorer using Pandas Series (names, ages, Python marks, AI marks).
+
+**Run:** `python Day13-Pandas-Series/student_data_explorer.py`
+**Requires:** `pip install pandas`
+
+**Features:** Display all students, highest and lowest marks, average marks,
+students scoring above 75, number of passing students, bonus: custom index with student IDs
