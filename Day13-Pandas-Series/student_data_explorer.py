@@ -49,9 +49,17 @@ def lowest_marks():
     print(f"{names[lowest_average_marks]}  -> {average[lowest_average_marks]} (Average Mark)")
 
 
+def average_marks():
+    print()
+    print("|==== AVERAGE MARKS ====|\n".center(61))
+    print(f"Average of Python Marks : {python_marks.mean()}")
+    print(f"Average of AI Marks     : {ai_marks.mean()}")
+    print(f"Overall Average         : {average.mean()}")
+
 def main():
     display_all_students()
     highest_marks()
     lowest_marks()
+    average_marks()
 
 main()
