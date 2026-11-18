@@ -21,7 +21,7 @@ def display_all_students():
     print("-" * 61)
 
 
-def highest__marks():
+def highest_marks():
     highest_python_marks = python_marks.idxmax()
     highest_ai_marks = ai_marks.idxmax()
     highest_total_marks = total.idxmax()
@@ -33,11 +33,25 @@ def highest__marks():
     print(f"{names[highest_ai_marks]} -> {ai_marks[highest_ai_marks]}   (AI Mark)")
     print(f"{names[highest_total_marks]} -> {total[highest_total_marks]}  (Total Mark)")
     print(f"{names[highest_average_marks]} -> {average[highest_average_marks]} (Average Mark)")
-    
+
+
+def lowest_marks():
+    lowest_python_marks = python_marks.idxmin()
+    lowest_ai_marks = ai_marks.idxmin()
+    lowest_total_marks = total.idxmin()
+    lowest_average_marks =  average.idxmin()
+
+    print()
+    print("|==== STUDENT WITH LOWEST MARKS ====|\n".center(61))
+    print(f"{names[lowest_python_marks]} -> {python_marks[lowest_python_marks]}   (Python Mark)")
+    print(f"{names[lowest_ai_marks]}  -> {ai_marks[lowest_ai_marks]}   (AI Mark)")
+    print(f"{names[lowest_total_marks]}  -> {total[lowest_total_marks]}  (Total Mark)")
+    print(f"{names[lowest_average_marks]}  -> {average[lowest_average_marks]} (Average Mark)")
+
 
 def main():
     display_all_students()
-    highest__marks()
-
+    highest_marks()
+    lowest_marks()
 
 main()
