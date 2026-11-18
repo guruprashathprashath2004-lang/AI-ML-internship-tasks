@@ -56,10 +56,29 @@ def average_marks():
     print(f"Average of AI Marks     : {ai_marks.mean()}")
     print(f"Overall Average         : {average.mean()}")
 
+
+def scoring_above_75():
+
+    print()
+    print(f"|==== STUDENTS SCORING ABOVE 75 ====|\n".center(61))
+
+    above = average[average > 75]
+
+    if len(above) == 0:
+        print("No student found...!")
+        return
+
+    for i in above.index:
+        print(f"{names[i]:<9} ->  {above[i]}")
+
+    print(f"\nTotal Count : {len(above)}")
+
+
 def main():
     display_all_students()
     highest_marks()
     lowest_marks()
     average_marks()
+    scoring_above_75()
 
 main()
