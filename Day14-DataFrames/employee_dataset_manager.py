@@ -10,3 +10,14 @@ DATASET = {
     "Performance_Score": [88, 76, 91, 65, 84, 79, 90, 95, 72, 81],
     }
 
+
+def display_dataset():
+    data = pd.DataFrame(DATASET)
+    return data
+
+
+def main():
+    employee_dataset = display_dataset()
+    print(employee_dataset)
+
+main()
