@@ -60,6 +60,20 @@ def remove_column(renamed_coulmn):
     return remove
 
 
+def select_employee(removed_column):
+
+    print()
+    loc = removed_column.set_index("Employee_ID")
+    print("|==== SELECTED USING 'loc' ====|\n")
+    print(loc.loc[1001])
+
+    print()
+    iloc = removed_column.iloc[3]
+    print("|==== SELECTED USING 'iloc' ====|\n")
+    print(iloc)
+
+
+
 def main():
 
     employee_dataset = display_dataset()
@@ -78,5 +92,7 @@ def main():
     print()
     print(f"|==== AFTER REMOVING THE Age COLUMN ====|\n".center(85))
     print(removed_column)
+
+    select_employee(removed_column)
 
 main()
