@@ -114,3 +114,13 @@ Student Data Explorer using Pandas Series (names, ages, Python marks, AI marks).
 
 **Features:** Display all students, highest and lowest marks, average marks,
 students scoring above 75, number of passing students, bonus: custom index with student IDs
+
+## Day 14: DataFrames + Rows & Columns
+Employee Dataset Manager using Pandas DataFrame (10 employees, 7 columns).
+
+**Run:** `python Day14-DataFrames/employee_dataset_manager.py`
+**Requires:** `pip install pandas`
+
+**Features:** Display full dataset, selected columns, first 5 and last 5 employees,
+add Bonus column, rename Salary to Base_Salary, remove a column,
+select an employee using loc and iloc, bonus: Total_Salary column

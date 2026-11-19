@@ -89,7 +89,6 @@ def main():
     display_columns(employee_dataset)
     first_and_last_5(employee_dataset)
     bonus_column(employee_dataset)
-    rename_column(employee_dataset)
 
     renamed_coulmn = rename_column(employee_dataset)
     print()
