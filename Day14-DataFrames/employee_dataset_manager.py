@@ -46,7 +46,7 @@ def bonus_column(employee_dataset):
 
     print()
     print(f"|==== ALL EMPLOYEE DATASET (WITH BONUS COLUMN(SALARY * 0.1)) ====|\n".center(90))
-    print(employee_dataset)
+    print(employee_dataset.to_string())
 
 
 def rename_column(employee_dataset):
@@ -78,14 +78,14 @@ def bonus_feature(removed_column):
     print()
     print(f"|==== AFTER ADDING Total_Salary COLUMN ====|\n".center(100))
     removed_column["Total_Salary"] = removed_column["Base_Salary"] + removed_column["Bonus"]
-    print(removed_column)
+    print(removed_column.to_string())
 
 
 
 def main():
 
     employee_dataset = display_dataset()
-    print(employee_dataset)
+    print(employee_dataset.to_string())
     display_columns(employee_dataset)
     first_and_last_5(employee_dataset)
     bonus_column(employee_dataset)
@@ -98,7 +98,7 @@ def main():
     removed_column = remove_column(renamed_coulmn)
     print()
     print(f"|==== AFTER REMOVING THE Age COLUMN ====|\n".center(85))
-    print(removed_column)
+    print(removed_column.to_string())
 
     select_employee(removed_column)
     bonus_feature(removed_column)
