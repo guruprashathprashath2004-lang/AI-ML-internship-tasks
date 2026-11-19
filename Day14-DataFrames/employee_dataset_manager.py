@@ -26,9 +26,24 @@ def display_columns(employee_dataset):
     print(data)
 
 
+def first_and_last_5(employee_dataset):
+
+    first_5 = employee_dataset.head(5)
+    last_5 = employee_dataset.tail(5)
+
+    print()
+    print(f"|==== FIRST 5 EMPLOYEES ====|\n".center(80))
+    print(first_5)
+
+    print()
+    print(f"|==== LAST 5 EMPLOYEES ====|\n".center(80))
+    print(last_5)
+
+
 def main():
     employee_dataset = display_dataset()
     print(employee_dataset)
     display_columns(employee_dataset)
+    first_and_last_5(employee_dataset)
 
 main()
