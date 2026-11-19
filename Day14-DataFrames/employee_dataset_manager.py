@@ -73,6 +73,14 @@ def select_employee(removed_column):
     print(iloc)
 
 
+def bonus_feature(removed_column):
+
+    print()
+    print(f"|==== AFTER ADDING Total_Salary COLUMN ====|\n".center(100))
+    removed_column["Total_Salary"] = removed_column["Base_Salary"] + removed_column["Bonus"]
+    print(removed_column)
+
+
 
 def main():
 
@@ -94,5 +102,6 @@ def main():
     print(removed_column)
 
     select_employee(removed_column)
+    bonus_feature(removed_column)
 
 main()
