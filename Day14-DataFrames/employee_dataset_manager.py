@@ -49,12 +49,21 @@ def bonus_column(employee_dataset):
     print(employee_dataset)
 
 
+def rename_column(employee_dataset):
+    rename = employee_dataset.rename(columns={"Salary" : "Base_Salary"})
+    return rename
+
 
 def main():
+
     employee_dataset = display_dataset()
     print(employee_dataset)
     display_columns(employee_dataset)
     first_and_last_5(employee_dataset)
     bonus_column(employee_dataset)
+    rename_column(employee_dataset)
+
+    renamed_coulmn = rename_column(employee_dataset)
+    print(renamed_coulmn.to_string())
 
 main()
