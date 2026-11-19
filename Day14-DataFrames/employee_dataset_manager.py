@@ -50,8 +50,14 @@ def bonus_column(employee_dataset):
 
 
 def rename_column(employee_dataset):
+
     rename = employee_dataset.rename(columns={"Salary" : "Base_Salary"})
     return rename
+
+
+def remove_column(renamed_coulmn):
+    remove = renamed_coulmn.drop(columns=["Age"])
+    return remove
 
 
 def main():
@@ -64,6 +70,13 @@ def main():
     rename_column(employee_dataset)
 
     renamed_coulmn = rename_column(employee_dataset)
+    print()
+    print(f"|==== AFTER RENAMING Salary TO Base_Salary ====|\n".center(95))
     print(renamed_coulmn.to_string())
+
+    removed_column = remove_column(renamed_coulmn)
+    print()
+    print(f"|==== AFTER REMOVING THE Age COLUMN ====|\n".center(85))
+    print(removed_column)
 
 main()
