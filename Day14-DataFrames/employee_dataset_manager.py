@@ -12,12 +12,23 @@ DATASET = {
 
 
 def display_dataset():
+
+    print(f"|==== ALL EMPLOYEE DATASET ====|\n".center(80))
     data = pd.DataFrame(DATASET)
     return data
+
+
+def display_columns(employee_dataset):
+
+    print()
+    print(f"|==== SELECTED COLUMNS ====|\n".center(60))
+    data = employee_dataset[["Name", "Department", "Experience", "Performance_Score"]]
+    print(data)
 
 
 def main():
     employee_dataset = display_dataset()
     print(employee_dataset)
+    display_columns(employee_dataset)
 
 main()
