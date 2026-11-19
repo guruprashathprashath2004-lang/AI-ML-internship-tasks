@@ -40,10 +40,21 @@ def first_and_last_5(employee_dataset):
     print(last_5)
 
 
+def bonus_column(employee_dataset):
+
+    employee_dataset["Bonus"] = employee_dataset["Salary"] * 0.1
+
+    print()
+    print(f"|==== ALL EMPLOYEE DATASET (WITH BONUS COLUMN(SALARY * 0.1)) ====|\n".center(90))
+    print(employee_dataset)
+
+
+
 def main():
     employee_dataset = display_dataset()
     print(employee_dataset)
     display_columns(employee_dataset)
     first_and_last_5(employee_dataset)
+    bonus_column(employee_dataset)
 
 main()
