@@ -24,7 +24,7 @@ def missing_columns_check(sales_data):
 
 def display_informations(sales_data):
 
-    print("\n|==== DATASET INFORMATION ====|\n")
+    print("|==== DATASET INFORMATION ====|\n".center(100))
 
     print(f"Number of rows    : {len(sales_data)}")
     print(f"Number of columns : {len(sales_data.columns)}")
@@ -40,15 +40,32 @@ def display_informations(sales_data):
     print(f"\nRows where Revenue is not Price * Quantity : {wrong_revenue}")
 
 
+def first_and_last(sales_data):
+    print()
+    print("|==== FIRST 5 RECORDS ====|\n".center(100))
+    print(sales_data.head(5).to_string())
+
+    print()
+    print("|==== LAST 5 RECORDS ====|\n".center(100))
+    print(sales_data.tail(5).to_string())
+
+
+def total_revenue(sales_data):
+    total = sales_data["Revenue"].sum()
+
+    print("|==== TOTAL REVENUE ====|\n".center(100))
+    print(f"Total orders  : {len(sales_data)}")
+    print(f"Total revenue : {total:,}") 
 
 def main():
     sales_data = load_csv_file(DEFAULT_FILE)
-    print(pd.DataFrame(sales_data))
 
     if not missing_columns_check(sales_data):
         print("This file does not have the required columns. Program stopped.")
         return
     
     display_informations(sales_data)
+    first_and_last(sales_data)
+    total_revenue(sales_data)
 
 main()
