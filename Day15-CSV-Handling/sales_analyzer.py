@@ -97,8 +97,25 @@ def save_analyzed_csv(sales_data):
     check = pd.read_csv(OUTPUT_FILE)       
     print(f"\nCheck: {OUTPUT_FILE} has {len(check)} rows and {len(check.columns)} columns")
 
+
+def get_filename():
+    while True:
+        filename = input(f"Enter CSV filename (press Enter for {DEFAULT_FILE}): ").strip()
+
+        if filename == "":
+            filename = DEFAULT_FILE
+
+        if not filename.endswith(".csv"):
+            print("Please enter a .csv file.")
+        elif not os.path.exists(filename):
+            print("File not found. Try again.")
+        else:
+            return filename
+
+        
 def main():
-    sales_data = load_csv_file(DEFAULT_FILE)
+    filename = get_filename()
+    sales_data = load_csv_file(filename)
 
     if not missing_columns_check(sales_data):
         print("This file does not have the required columns. Program stopped.")
