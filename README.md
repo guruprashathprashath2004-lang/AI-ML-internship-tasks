@@ -124,3 +124,16 @@ Employee Dataset Manager using Pandas DataFrame (10 employees, 7 columns).
 **Features:** Display full dataset, selected columns, first 5 and last 5 employees,
 add Bonus column, rename Salary to Base_Salary, remove a column,
 select an employee using loc and iloc, bonus: Total_Salary column
+
+## Day 15: CSV Handling
+Sales CSV Analyzer using Pandas (read_csv and to_csv).
+
+**Run:**
+1. `python Day15-CSV-Handling/create_sales_data.py` (creates sales_data.csv with 120 records)
+2. `python Day15-CSV-Handling/sales_analyzer.py`
+
+**Requires:** `pip install pandas`
+
+**Features:** Load a CSV, dataset information, first and last records, total revenue,
+highest-value order, analyzed CSV with an Order_Level column,
+bonus: user enters the CSV filename
