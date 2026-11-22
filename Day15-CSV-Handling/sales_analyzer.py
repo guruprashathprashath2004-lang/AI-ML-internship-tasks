@@ -24,6 +24,7 @@ def missing_columns_check(sales_data):
 
 def display_informations(sales_data):
 
+    print()
     print("|==== DATASET INFORMATION ====|\n".center(100))
 
     print(f"Number of rows    : {len(sales_data)}")
@@ -53,9 +54,21 @@ def first_and_last(sales_data):
 def total_revenue(sales_data):
     total = sales_data["Revenue"].sum()
 
+    print()
     print("|==== TOTAL REVENUE ====|\n".center(100))
     print(f"Total orders  : {len(sales_data)}")
     print(f"Total revenue : {total:,}") 
+
+
+def highest_value_order(sales_data):
+    best = sales_data["Revenue"].idxmax()        
+    order = sales_data.loc[best]                 
+
+    print()
+    print("|==== HIGHEST-VALUE ORDER ====|\n".center(100))
+    for column in order.index:
+        print(f"{column:<12}: {order[column]}")
+
 
 def main():
     sales_data = load_csv_file(DEFAULT_FILE)
@@ -67,5 +80,6 @@ def main():
     display_informations(sales_data)
     first_and_last(sales_data)
     total_revenue(sales_data)
+    highest_value_order(sales_data)
 
 main()
