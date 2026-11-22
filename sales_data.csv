@@ -1,0 +1,101 @@
+Order_ID,Product,Category,Quantity,Price,Revenue,City,Date
+ORD 1001,Pen Box,Stationery,4,450,1800,Badulla,2026-12-09
+ORD 1002,Rice 5kg,Groceries,8,1500,12000,Colombo,2026-12-04
+ORD 1003,Pen Box,Stationery,18,450,8100,Badulla,2026-10-14
+ORD 1004,Laptop,Electronics,1,150000,150000,Badulla,2026-04-08
+ORD 1005,Sarong,Clothing,20,3200,64000,Badulla,2026-09-07
+ORD 1006,Backpack,Stationery,18,5500,99000,Galle,2026-04-15
+ORD 1007,Notebook,Stationery,9,350,3150,Kurunegala,2026-01-25
+ORD 1008,Headphones,Electronics,14,12000,168000,Kandy,2026-05-05
+ORD 1009,Rice 5kg,Groceries,11,1500,16500,Badulla,2026-02-13
+ORD 1010,Smartphone,Electronics,12,90000,1080000,Kurunegala,2026-06-20
+ORD 1011,Tea Packet,Groceries,2,650,1300,Matara,2026-08-18
+ORD 1012,Smartphone,Electronics,13,90000,1170000,Badulla,2026-09-10
+ORD 1013,Pen Box,Stationery,20,450,9000,Kurunegala,2026-06-19
+ORD 1014,Rice 5kg,Groceries,3,1500,4500,Badulla,2026-11-08
+ORD 1015,Tea Packet,Groceries,3,650,1950,Kurunegala,2026-04-28
+ORD 1016,Smartphone,Electronics,13,90000,1170000,Kandy,2026-08-21
+ORD 1017,Coconut Oil,Groceries,6,900,5400,Kandy,2026-06-07
+ORD 1018,Pen Box,Stationery,9,450,4050,Matara,2026-11-21
+ORD 1019,Smartphone,Electronics,20,90000,1800000,Matara,2026-03-18
+ORD 1020,Backpack,Stationery,8,5500,44000,Colombo,2026-08-13
+ORD 1021,Tea Packet,Groceries,18,650,11700,Colombo,2026-11-11
+ORD 1022,Laptop,Electronics,8,150000,1200000,Kurunegala,2026-01-26
+ORD 1023,Coconut Oil,Groceries,13,900,11700,Kandy,2026-02-07
+ORD 1024,Notebook,Stationery,11,350,3850,Colombo,2026-11-16
+ORD 1025,T-Shirt,Clothing,15,2500,37500,Colombo,2026-05-05
+ORD 1026,Rice 5kg,Groceries,18,1500,27000,Jaffna,2026-05-24
+ORD 1027,Notebook,Stationery,14,350,4900,Jaffna,2026-07-12
+ORD 1028,Rice 5kg,Groceries,5,1500,7500,Jaffna,2026-08-03
+ORD 1029,Laptop,Electronics,4,150000,600000,Colombo,2026-11-06
+ORD 1030,Pen Box,Stationery,14,450,6300,Jaffna,2026-02-13
+ORD 1031,T-Shirt,Clothing,20,2500,50000,Galle,2026-09-09
+ORD 1032,Sarong,Clothing,1,3200,3200,Matara,2026-12-04
+ORD 1033,Pen Box,Stationery,18,450,8100,Kurunegala,2026-05-25
+ORD 1034,Pen Box,Stationery,11,450,4950,Badulla,2026-05-14
+ORD 1035,Headphones,Electronics,15,12000,180000,Badulla,2026-12-24
+ORD 1036,Tea Packet,Groceries,17,650,11050,Kurunegala,2026-03-17
+ORD 1037,Smartphone,Electronics,10,90000,900000,Kurunegala,2026-11-17
+ORD 1038,Notebook,Stationery,7,350,2450,Colombo,2026-06-25
+ORD 1039,Headphones,Electronics,18,12000,216000,Kurunegala,2026-09-01
+ORD 1040,Notebook,Stationery,11,350,3850,Galle,2026-01-04
+ORD 1041,Coconut Oil,Groceries,10,900,9000,Colombo,2026-01-08
+ORD 1042,Notebook,Stationery,3,350,1050,Badulla,2026-12-16
+ORD 1043,Smartphone,Electronics,18,90000,1620000,Kurunegala,2026-03-05
+ORD 1044,Pen Box,Stationery,16,450,7200,Jaffna,2026-03-09
+ORD 1045,Sarong,Clothing,20,3200,64000,Galle,2026-04-18
+ORD 1046,Backpack,Stationery,7,5500,38500,Matara,2026-05-13
+ORD 1047,Pen Box,Stationery,12,450,5400,Galle,2026-09-15
+ORD 1048,Smartphone,Electronics,8,90000,720000,Colombo,2026-02-11
+ORD 1049,Laptop,Electronics,19,150000,2850000,Jaffna,2026-04-19
+ORD 1050,Rice 5kg,Groceries,1,1500,1500,Badulla,2026-12-21
+ORD 1051,Laptop,Electronics,8,150000,1200000,Badulla,2026-01-28
+ORD 1052,Coconut Oil,Groceries,3,900,2700,Jaffna,2026-04-09
+ORD 1053,Pen Box,Stationery,16,450,7200,Colombo,2026-09-05
+ORD 1054,Backpack,Stationery,19,5500,104500,Jaffna,2026-08-08
+ORD 1055,Jeans,Clothing,14,6500,91000,Colombo,2026-02-04
+ORD 1056,Pen Box,Stationery,14,450,6300,Kandy,2026-07-14
+ORD 1057,Jeans,Clothing,2,6500,13000,Matara,2026-11-21
+ORD 1058,Smartphone,Electronics,2,90000,180000,Galle,2026-12-11
+ORD 1059,Smartphone,Electronics,8,90000,720000,Colombo,2026-04-18
+ORD 1060,Jeans,Clothing,5,6500,32500,Galle,2026-03-09
+ORD 1061,Jeans,Clothing,8,6500,52000,Kurunegala,2026-02-15
+ORD 1062,Sarong,Clothing,4,3200,12800,Badulla,2026-11-18
+ORD 1063,Laptop,Electronics,3,150000,450000,Kurunegala,2026-04-06
+ORD 1064,T-Shirt,Clothing,16,2500,40000,Galle,2026-04-28
+ORD 1065,T-Shirt,Clothing,2,2500,5000,Colombo,2026-07-01
+ORD 1066,T-Shirt,Clothing,9,2500,22500,Kurunegala,2026-08-10
+ORD 1067,T-Shirt,Clothing,18,2500,45000,Matara,2026-12-16
+ORD 1068,Headphones,Electronics,7,12000,84000,Kandy,2026-04-02
+ORD 1069,Notebook,Stationery,18,350,6300,Badulla,2026-12-11
+ORD 1070,Laptop,Electronics,2,150000,300000,Jaffna,2026-08-17
+ORD 1071,Sarong,Clothing,6,3200,19200,Badulla,2026-09-03
+ORD 1072,Headphones,Electronics,3,12000,36000,Jaffna,2026-02-22
+ORD 1073,Rice 5kg,Groceries,13,1500,19500,Badulla,2026-10-08
+ORD 1074,Notebook,Stationery,20,350,7000,Badulla,2026-10-03
+ORD 1075,T-Shirt,Clothing,19,2500,47500,Jaffna,2026-09-11
+ORD 1076,Tea Packet,Groceries,7,650,4550,Matara,2026-12-11
+ORD 1077,Rice 5kg,Groceries,9,1500,13500,Galle,2026-03-22
+ORD 1078,Pen Box,Stationery,10,450,4500,Galle,2026-06-25
+ORD 1079,Smartphone,Electronics,1,90000,90000,Galle,2026-10-19
+ORD 1080,Smartphone,Electronics,3,90000,270000,Jaffna,2026-04-17
+ORD 1081,Tea Packet,Groceries,5,650,3250,Kandy,2026-02-08
+ORD 1082,Coconut Oil,Groceries,10,900,9000,Colombo,2026-08-27
+ORD 1083,Sarong,Clothing,10,3200,32000,Jaffna,2026-11-17
+ORD 1084,Laptop,Electronics,18,150000,2700000,Kandy,2026-11-04
+ORD 1085,Headphones,Electronics,9,12000,108000,Badulla,2026-02-24
+ORD 1086,Sarong,Clothing,5,3200,16000,Kandy,2026-05-20
+ORD 1087,Rice 5kg,Groceries,11,1500,16500,Colombo,2026-11-21
+ORD 1088,Tea Packet,Groceries,17,650,11050,Galle,2026-05-28
+ORD 1089,Laptop,Electronics,3,150000,450000,Matara,2026-07-27
+ORD 1090,Tea Packet,Groceries,2,650,1300,Badulla,2026-06-25
+ORD 1091,Headphones,Electronics,9,12000,108000,Colombo,2026-12-15
+ORD 1092,Sarong,Clothing,14,3200,44800,Jaffna,2026-01-04
+ORD 1093,Smartphone,Electronics,5,90000,450000,Jaffna,2026-01-27
+ORD 1094,Coconut Oil,Groceries,19,900,17100,Jaffna,2026-03-14
+ORD 1095,Headphones,Electronics,2,12000,24000,Kandy,2026-06-26
+ORD 1096,Laptop,Electronics,12,150000,1800000,Colombo,2026-11-08
+ORD 1097,Pen Box,Stationery,4,450,1800,Kandy,2026-09-28
+ORD 1098,T-Shirt,Clothing,20,2500,50000,Matara,2026-03-08
+ORD 1099,Headphones,Electronics,6,12000,72000,Galle,2026-01-06
+ORD 1100,Backpack,Stationery,11,5500,60500,Kurunegala,2026-07-26
