@@ -5,6 +5,8 @@ DEFAULT_FILE = "sales_data.csv"
 OUTPUT_FILE = "sales_analyzed.csv"
 REQUIRED_COLUMNS = ["Order_ID", "Product", "Category", "Quantity", "Price", "Revenue", "City", "Date"]
 
+HIGH_ORDER = 200000      
+MEDIUM_ORDER = 30000   
 
 def load_csv_file(file_name):
     sales_datas = pd.read_csv(file_name)
@@ -70,6 +72,31 @@ def highest_value_order(sales_data):
         print(f"{column:<12}: {order[column]}")
 
 
+def save_analyzed_csv(sales_data):
+    levels = []
+
+    for i in range(len(sales_data)):
+        revenue = sales_data["Revenue"].iloc[i]
+
+        if revenue >= HIGH_ORDER:
+            levels.append("High")
+        elif revenue >= MEDIUM_ORDER:
+            levels.append("Medium")
+        else:
+            levels.append("Low")
+
+    sales_data["Order_Level"] = levels
+    sales_data.to_csv(OUTPUT_FILE, index=False)
+
+    print("\n|==== ANALYZED CSV ====|\n")
+    print(f"Saved to {OUTPUT_FILE}")
+    print(f"High orders   (Revenue >= {HIGH_ORDER}) : {(sales_data['Order_Level'] == 'High').sum()}")
+    print(f"Medium orders (Revenue >= {MEDIUM_ORDER}) : {(sales_data['Order_Level'] == 'Medium').sum()}")
+    print(f"Low orders                      : {(sales_data['Order_Level'] == 'Low').sum()}")
+
+    check = pd.read_csv(OUTPUT_FILE)       
+    print(f"\nCheck: {OUTPUT_FILE} has {len(check)} rows and {len(check.columns)} columns")
+
 def main():
     sales_data = load_csv_file(DEFAULT_FILE)
 
@@ -81,5 +108,6 @@ def main():
     first_and_last(sales_data)
     total_revenue(sales_data)
     highest_value_order(sales_data)
+    save_analyzed_csv(sales_data)
 
 main()
